@@ -22,7 +22,7 @@ public class LoadingFrame extends JFrame implements Runnable {
 
 	public LoadingFrame() {
 		super("CPS USB Conf");
-		setSize(300, 300);
+		setSize(230, 150);
 		loadingFrame = this;
 		setUndecorated(true);
 		setAlwaysOnTop(true);
@@ -32,6 +32,12 @@ public class LoadingFrame extends JFrame implements Runnable {
 		setIconImage(new ImageIcon(this.getClass().getResource(
 				"/images/icon.png")).getImage());
 		setVisible(true);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
