@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 
 import com.sun.awt.AWTUtilities;
 import com.withiter.entity.USBConfig;
+import com.withiter.utils.OSUtils;
 
 public class LoadingFrame extends JFrame implements Runnable {
 	/**
@@ -31,7 +32,15 @@ public class LoadingFrame extends JFrame implements Runnable {
 	}
 
 	private void initConf() throws IOException {
-		File f = new File("C:/USBConfs");
+		File f = null;
+		if(OSUtils.isMac()){
+			f = new File("/Users/user/USBConfs");
+		}
+		if(OSUtils.isWin()){
+			f = new File("C:/USBConfs");
+		}
+		
+		
 		if (!f.exists()) {
 			System.out.println("C:/USBConfs does not exist");
 			f.createNewFile();
