@@ -1,6 +1,7 @@
 package com.withiter.frame;
 
 import java.awt.Graphics;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -20,6 +21,10 @@ public class LoadingFrame extends JFrame implements Runnable {
 		return loadingFrame;
 	}
 
+	private void initConf(){
+		File f = new File("C:/USBConfs");
+	}
+	
 	public LoadingFrame() {
 		super("CPS USB Conf");
 		setSize(230, 150);
@@ -32,6 +37,10 @@ public class LoadingFrame extends JFrame implements Runnable {
 		setIconImage(new ImageIcon(this.getClass().getResource(
 				"/images/icon.png")).getImage());
 		setVisible(true);
+		
+		// initial configurations
+		initConf();
+		
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {

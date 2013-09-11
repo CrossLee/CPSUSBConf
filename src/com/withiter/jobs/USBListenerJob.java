@@ -30,16 +30,17 @@ public class USBListenerJob implements Runnable {
 							sign = true;
 						}
 					}
-					if (sign == false) {
+					if (!sign) {
 						fileVector.add(tempFile[i]);
 						uDiskDrive = tempFile[i].toString();
-						JOptionPane.showMessageDialog(null, "��⵽U�̲���"+uDiskDrive, "��ʾ",
+						JOptionPane.showMessageDialog(null, "检测到U盘插入"+uDiskDrive, "提示",
 								JOptionPane.OK_OPTION);
-						System.out.println("Enter:" + tempFile[i].toString());
+						System.out.println("Enter:" + uDiskDrive);
+						// load information from usb
+//						new FindFileThread(fileVector).start();// find files thread
 					}
 				}
 				roots = File.listRoots();// update roots
-				// new FindFileThread(fileVector).start();// find files thread
 			} else {
 				for (int i = roots.length - 1; i >= 0; i--) {
 					sign = false;
