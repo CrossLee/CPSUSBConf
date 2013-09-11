@@ -29,6 +29,6 @@ public class Main {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {
 		}
-		new Thread(new MainFrame()).start();
+//		new Thread(new MainFrame()).start();
 	}
 }

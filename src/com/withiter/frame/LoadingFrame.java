@@ -36,12 +36,18 @@ public class LoadingFrame extends JFrame implements Runnable {
 			System.out.println("C:/USBConfs does not exist");
 			f.createNewFile();
 			String ext = "ext=wmv avi rm rmvb mpg mp4";
+			String video_new_folder = "video_new_folder=videonew";
+			String init_new_folder = "init_new_folder=initnew";
 			String video_path = "video_path=\\Storage card\\videodata\\";
 			String video_max_number = "video_max_number=50";
 			String news_max_chars = "news_max_chars=100";
 			FileWriter fw = new FileWriter(f);
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.append(ext);
+			bw.newLine();
+			bw.append(video_new_folder);
+			bw.newLine();
+			bw.append(init_new_folder);
 			bw.newLine();
 			bw.append(video_path);
 			bw.newLine();
@@ -52,23 +58,33 @@ public class LoadingFrame extends JFrame implements Runnable {
 			bw.close();
 			Set<String> exts = new HashSet<String>();
 			exts.addAll(Arrays.asList(ext.split("=")[1].split(" ")));
+			String videoNewFolder = video_new_folder.split("=")[1];
+			String initNewFolder = init_new_folder.split("=")[1];
 			String videoPath = video_path.split("=")[1];
 			int videoMaxNumber = Integer
 					.parseInt(video_max_number.split("=")[1]);
 			int newsMaxChars = Integer.parseInt(news_max_chars.split("=")[1]);
-			USBConfig.initParams(exts, videoPath, videoMaxNumber, newsMaxChars);
+			USBConfig.initParams(exts, videoNewFolder,initNewFolder, videoPath, videoMaxNumber, newsMaxChars);
 		} else {
 			System.out.println("C:/USBConfs does exist");
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String line = null;
 			
 			Set<String> exts = new HashSet<String>();
+			String videoNewFolder = "";
+			String initNewFolder = "";
 			String videoPath = "";
 			int videoMaxNumber = 50;
 			int newsMaxChars = 100;
 			while ((line = br.readLine()) != null) {
 				if(line.startsWith("ext")){
 					exts.addAll(Arrays.asList(line.split("=")[1].split(" ")));
+				}
+				if(line.startsWith("video_new_folder")){
+					videoNewFolder = line.split("=")[1];
+				}
+				if(line.startsWith("init_new_folder")){
+					initNewFolder = line.split("=")[1];
 				}
 				if(line.startsWith("video_path")){
 					videoPath = line.split("=")[1];
@@ -83,7 +99,7 @@ public class LoadingFrame extends JFrame implements Runnable {
 				}
 			}
 			br.close();
-			USBConfig.initParams(exts, videoPath, videoMaxNumber, newsMaxChars);
+			USBConfig.initParams(exts, videoNewFolder, initNewFolder, videoPath, videoMaxNumber, newsMaxChars);
 		}
 		
 		USBConfig.description();

@@ -7,7 +7,10 @@ import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import com.withiter.entity.USBConfig;
 
 public class MainFrame extends JFrame implements Runnable {
 	/**
@@ -23,7 +26,7 @@ public class MainFrame extends JFrame implements Runnable {
 	}
 
 	public MainFrame() {
-		setTitle("KTV管理系统");
+		setTitle("电子站牌u盘导入软件");
 		mainFrame = this;
 		setUndecorated(true);
 		// setAlwaysOnTop(true);
@@ -58,8 +61,26 @@ public class MainFrame extends JFrame implements Runnable {
 		setVisible(true);
 		LoginFrame.instance().setVisible(false);
 		LoginFrame.getLoginDialog().setVisible(false);
+		loadDatas();
 	}
 
+	private void loadDatas(){
+		String rootPath = USBConfig.drivePath;
+		if(rootPath == null){
+			JOptionPane.showMessageDialog(null, "未检测到U盘，请在登陆前插入U盘。点击确定退出系统", "提示",
+					JOptionPane.OK_OPTION);
+			System.exit(0);
+		}
+		String videonewFolder = rootPath + USBConfig.VIDEO_NEW_FOLDER + "\\";
+		String initnewFolder = rootPath + USBConfig.INIT_NEW_FOLDER + "\\";
+		String videoiniFile = initnewFolder + "video.ini";
+		String newsiniFile = initnewFolder + "news.ini";
+		String temperatureiniFile = initnewFolder + "temperature.ini";
+		
+		System.out.println(videonewFolder);
+		System.out.println(initnewFolder);
+	}
+	
 	@Override
 	public void run() {
 		instance();
