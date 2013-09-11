@@ -15,6 +15,7 @@ import com.withiter.dao.BookingDao;
 import com.withiter.dao.FoodDao;
 import com.withiter.dao.RoomDao;
 import com.withiter.dao.RoomTypeDao;
+import com.withiter.dao.VideoDao;
 import com.withiter.listener.TableListener;
 
 public class MainPanel extends JPanel {
@@ -44,7 +45,8 @@ public class MainPanel extends JPanel {
 		jscrolPane.setOpaque(false);
 		jscrolPane.getViewport().setOpaque(false);
 		add(jscrolPane);
-		showRoomsBookedData();
+//		showRoomsBookedData();
+		showVideos();
 	}
 
 	@Override
@@ -130,10 +132,26 @@ public class MainPanel extends JPanel {
 		take.addActionListener(tableListener);
 		delete.addActionListener(tableListener);
 	}
+	
+	public void showVideos(){
+		Object[] head = { "视频名称", "后缀类型", "文件路径", "文件大小", "添加时间" };
+		VideoDao vd = VideoDao.instance();
+		showData(vd.getVideosData(), head);
+		JMenuItem add = new JMenuItem("添加视频");
+		JMenuItem delete = new JMenuItem("删除视频");
+		JPopupMenu menu = new JPopupMenu();
+		menu.add(add);
+		menu.add(delete);
+		TableListener tableListener = new TableListener(menu);
+		table.addMouseListener(tableListener);
+		table.addMouseMotionListener(tableListener);
+		add.addActionListener(tableListener);
+		delete.addActionListener(tableListener);
+	}
 
 	public void showRoomTakenData() {
-		dataType = "RoomsTaken";
-		Object[] head = { "房号", "房间类型", "房间消费", "开始时间", "结束时间" };
+		dataType = "RoomsBooked";
+		Object[] head = { "房号", "房间类型", "电话号码", "预订时长", "预订时间" };
 		showData(RoomDao.instance().getRoomsTakenData(), head);
 		JPopupMenu menu = new JPopupMenu();
 		JMenuItem buyFood = new JMenuItem("    添加酒水    ");
