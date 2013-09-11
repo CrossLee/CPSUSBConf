@@ -70,7 +70,6 @@ public class MainFrame extends JFrame implements Runnable {
 		loadDatas();
 		// right bottom panel
 		Container container = getContentPane();
-		container.repaint();
 		container.add(new MainPanel(), BorderLayout.CENTER);
 	}
 

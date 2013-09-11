@@ -86,7 +86,8 @@ public class BookRoomListener implements ActionListener {
 								jtfPhoneNumber.getText(),
 								Integer.parseInt(jlbDuration.getText()));
 						BookingDao.instance().addBooking(booking);
-						MainPanel.instance().showRoomsBookedData();
+//						MainPanel.instance().showRoomsBookedData();
+						MainPanel.instance().showVideos();
 						JOptionPane.showMessageDialog(null,
 								"<html>订房成功！房间号： <b><font size=8>"
 										+ roomList.get(i).getNumber()

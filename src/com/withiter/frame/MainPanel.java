@@ -117,21 +117,21 @@ public class MainPanel extends JPanel {
 		delete.addActionListener(tableListener);
 	}
 
-	public void showRoomsBookedData() {
-		dataType = "RoomsBooked";
-		Object[] head = { "房号", "房间类型", "电话号码", "预订时长", "预订时间" };
-		showData(BookingDao.instance().getBookingsData(), head);
-		JMenuItem take = new JMenuItem("    开通房间    ");
-		JMenuItem delete = new JMenuItem("    删除订单    ");
-		JPopupMenu menu = new JPopupMenu();
-		menu.add(take);
-		menu.add(delete);
-		TableListener tableListener = new TableListener(menu);
-		table.addMouseListener(tableListener);
-		table.addMouseMotionListener(tableListener);
-		take.addActionListener(tableListener);
-		delete.addActionListener(tableListener);
-	}
+//	public void showRoomsBookedData() {
+//		dataType = "RoomsBooked";
+//		Object[] head = { "房号", "房间类型", "电话号码", "预订时长", "预订时间" };
+//		showData(BookingDao.instance().getBookingsData(), head);
+//		JMenuItem take = new JMenuItem("    开通房间    ");
+//		JMenuItem delete = new JMenuItem("    删除订单    ");
+//		JPopupMenu menu = new JPopupMenu();
+//		menu.add(take);
+//		menu.add(delete);
+//		TableListener tableListener = new TableListener(menu);
+//		table.addMouseListener(tableListener);
+//		table.addMouseMotionListener(tableListener);
+//		take.addActionListener(tableListener);
+//		delete.addActionListener(tableListener);
+//	}
 	
 	public void showVideos(){
 		Object[] head = { "视频名称", "后缀类型", "文件路径", "文件大小", "添加时间" };
@@ -196,7 +196,8 @@ public class MainPanel extends JPanel {
 		} else if (dataType.equals("RoomTypes")) {
 			showRoomTypesData();
 		} else if (dataType.equals("RoomsBooked")) {
-			showRoomsBookedData();
+//			showRoomsBookedData();
+			showVideos();
 		} else if (dataType.equals("RoomsTaken")) {
 			showRoomTakenData();
 		} else if (dataType.equals("ExpiredRooms")) {
