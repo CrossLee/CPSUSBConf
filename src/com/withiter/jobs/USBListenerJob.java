@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
+import com.withiter.entity.USBConfig;
+
 public class USBListenerJob implements Runnable {
 
 	public static String uDiskDrive = "";
@@ -36,6 +38,7 @@ public class USBListenerJob implements Runnable {
 						JOptionPane.showMessageDialog(null, "检测到U盘插入"+uDiskDrive, "提示",
 								JOptionPane.OK_OPTION);
 						System.out.println("Enter:" + uDiskDrive);
+						USBConfig.drivePath = uDiskDrive;
 						// load information from usb
 //						new FindFileThread(fileVector).start();// find files thread
 					}
