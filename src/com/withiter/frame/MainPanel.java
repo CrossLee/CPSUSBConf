@@ -1,6 +1,7 @@
 package com.withiter.frame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -9,12 +10,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
-import com.withiter.dao.FoodDao;
+import com.withiter.dao.LogDao;
 import com.withiter.dao.NewsDao;
-import com.withiter.dao.RoomDao;
-import com.withiter.dao.RoomTypeDao;
 import com.withiter.dao.TemperatureDao;
 import com.withiter.dao.VideoDao;
 import com.withiter.listener.TableListener;
@@ -39,10 +38,10 @@ public class MainPanel extends JPanel {
 		mainPanel = this;
 		setOpaque(false);
 		setLayout(new BorderLayout());
-		setBorder(new EmptyBorder(0, 0, 20, 10));
+//		setBorder(new LineBorder(Color.BLACK));
 		table = new DataTable(null, null);
 		jscrolPane = new JScrollPane();
-		jscrolPane.setBorder(null);
+//		jscrolPane.setBorder(new LineBorder(Color.BLACK));
 		jscrolPane.setOpaque(false);
 		jscrolPane.getViewport().setOpaque(false);
 		add(jscrolPane);
@@ -64,59 +63,59 @@ public class MainPanel extends JPanel {
 		return table;
 	}
 
-	public void showAllRoomsData() {
-		dataType = "AllRooms";
-		Object[] head = { "房号", "房间类型", "房间楼层", "房间价格", "加钟费用" };
-		showData(RoomDao.instance().getRoomsData(), head);
-		JMenuItem add = new JMenuItem("    添加房间    ");
-		JMenuItem addRooms = new JMenuItem("    批量添加    ");
-		JMenuItem delete = new JMenuItem("    删除房间    ");
-		JPopupMenu menu = new JPopupMenu();
-		menu.add(add);
-		menu.add(addRooms);
-		menu.add(delete);
-		TableListener tableListener = new TableListener(menu);
-		table.addMouseListener(tableListener);
-		table.addMouseMotionListener(tableListener);
-		add.addActionListener(tableListener);
-		addRooms.addActionListener(tableListener);
-		delete.addActionListener(tableListener);
-	}
-
-	public void showExpiredRoomsData() {
-		dataType = "ExpiredRooms";
-		Object[] head = { "房号", "房间类型", "房间消费", "开始时间", "结束时间" };
-		showData(RoomDao.instance().getExpiredRoomsData(), head);
-		JPopupMenu menu = new JPopupMenu();
-		JMenuItem checkout = new JMenuItem("    房间结算    ");
-		JMenuItem addHours = new JMenuItem("    房间加钟    ");
-		menu.add(checkout);
-		menu.add(addHours);
-		TableListener tableListener = new TableListener(menu);
-		table.addMouseListener(tableListener);
-		table.addMouseMotionListener(tableListener);
-		checkout.addActionListener(tableListener);
-		addHours.addActionListener(tableListener);
-	}
-
-	public void showRoomTypesData() {
-		dataType = "RoomTypes";
-		Object[] head = { "ID", "类型名称", "房间价格", "加钟费用" };
-		showData(RoomTypeDao.instance().getRoomTypesData(), head);
-		JMenuItem add = new JMenuItem("    添加类型    ");
-		JMenuItem edit = new JMenuItem("    编辑类型    ");
-		JMenuItem delete = new JMenuItem("    删除类型    ");
-		JPopupMenu menu = new JPopupMenu();
-		menu.add(add);
-		menu.add(edit);
-		menu.add(delete);
-		TableListener tableListener = new TableListener(menu);
-		table.addMouseListener(tableListener);
-		table.addMouseMotionListener(tableListener);
-		add.addActionListener(tableListener);
-		edit.addActionListener(tableListener);
-		delete.addActionListener(tableListener);
-	}
+//	public void showAllRoomsData() {
+//		dataType = "AllRooms";
+//		Object[] head = { "房号", "房间类型", "房间楼层", "房间价格", "加钟费用" };
+//		showData(RoomDao.instance().getRoomsData(), head);
+//		JMenuItem add = new JMenuItem("    添加房间    ");
+//		JMenuItem addRooms = new JMenuItem("    批量添加    ");
+//		JMenuItem delete = new JMenuItem("    删除房间    ");
+//		JPopupMenu menu = new JPopupMenu();
+//		menu.add(add);
+//		menu.add(addRooms);
+//		menu.add(delete);
+//		TableListener tableListener = new TableListener(menu);
+//		table.addMouseListener(tableListener);
+//		table.addMouseMotionListener(tableListener);
+//		add.addActionListener(tableListener);
+//		addRooms.addActionListener(tableListener);
+//		delete.addActionListener(tableListener);
+//	}
+//
+//	public void showExpiredRoomsData() {
+//		dataType = "ExpiredRooms";
+//		Object[] head = { "房号", "房间类型", "房间消费", "开始时间", "结束时间" };
+//		showData(RoomDao.instance().getExpiredRoomsData(), head);
+//		JPopupMenu menu = new JPopupMenu();
+//		JMenuItem checkout = new JMenuItem("    房间结算    ");
+//		JMenuItem addHours = new JMenuItem("    房间加钟    ");
+//		menu.add(checkout);
+//		menu.add(addHours);
+//		TableListener tableListener = new TableListener(menu);
+//		table.addMouseListener(tableListener);
+//		table.addMouseMotionListener(tableListener);
+//		checkout.addActionListener(tableListener);
+//		addHours.addActionListener(tableListener);
+//	}
+//
+//	public void showRoomTypesData() {
+//		dataType = "RoomTypes";
+//		Object[] head = { "ID", "类型名称", "房间价格", "加钟费用" };
+//		showData(RoomTypeDao.instance().getRoomTypesData(), head);
+//		JMenuItem add = new JMenuItem("    添加类型    ");
+//		JMenuItem edit = new JMenuItem("    编辑类型    ");
+//		JMenuItem delete = new JMenuItem("    删除类型    ");
+//		JPopupMenu menu = new JPopupMenu();
+//		menu.add(add);
+//		menu.add(edit);
+//		menu.add(delete);
+//		TableListener tableListener = new TableListener(menu);
+//		table.addMouseListener(tableListener);
+//		table.addMouseMotionListener(tableListener);
+//		add.addActionListener(tableListener);
+//		edit.addActionListener(tableListener);
+//		delete.addActionListener(tableListener);
+//	}
 
 //	public void showRoomsBookedData() {
 //		dataType = "RoomsBooked";
@@ -135,6 +134,7 @@ public class MainPanel extends JPanel {
 //	}
 	
 	public void showVideos(){
+		dataType = "video";
 		Object[] head = { "视频名称", "后缀类型", "文件路径", "文件大小", "添加时间" };
 		VideoDao vd = VideoDao.instance();
 		showData(vd.getVideosData(), head);
@@ -150,7 +150,8 @@ public class MainPanel extends JPanel {
 		delete.addActionListener(tableListener);
 	}
 	public void showNews(){
-		Object[] head = { "新闻标示", "新闻内容", "", "", "" };
+		dataType = "news";
+		Object[] head = {"新闻内容"};
 		NewsDao nd = NewsDao.instance();
 		showData(nd.getNewssData(), head);
 		JMenuItem add = new JMenuItem("添加新闻");
@@ -165,7 +166,8 @@ public class MainPanel extends JPanel {
 		delete.addActionListener(tableListener);
 	}
 	public void showTemperature(){
-		Object[] head = { "温度信息", "", "", "", "" };
+		dataType = "temperature";
+		Object[] head = { "温度信息"};
 		TemperatureDao td = TemperatureDao.instance();
 		showData(td.getTemperaturesData(), head);
 		JMenuItem add = new JMenuItem("编辑温度信息");
@@ -176,41 +178,54 @@ public class MainPanel extends JPanel {
 		table.addMouseMotionListener(tableListener);
 		add.addActionListener(tableListener);
 	}
-
-	public void showRoomTakenData() {
-		dataType = "RoomsBooked";
-		Object[] head = { "房号", "房间类型", "电话号码", "预订时长", "预订时间" };
-		showData(RoomDao.instance().getRoomsTakenData(), head);
-		JPopupMenu menu = new JPopupMenu();
-		JMenuItem buyFood = new JMenuItem("    添加酒水    ");
-		JMenuItem checkout = new JMenuItem("    房间结算    ");
-		JMenuItem addHours = new JMenuItem("    房间加钟    ");
-		menu.add(buyFood);
-		menu.add(checkout);
-		menu.add(addHours);
-		TableListener tableListener = new TableListener(menu);
-		table.addMouseListener(tableListener);
-		table.addMouseMotionListener(tableListener);
-		buyFood.addActionListener(tableListener);
-		checkout.addActionListener(tableListener);
-		addHours.addActionListener(tableListener);
+	public void showLog(){
+		dataType = "log";
+		Object[] head = { "IP地址", "MAC地址", "日期", "操作", "文件名称", "成功/失败"};
+		LogDao ld = LogDao.instance();
+		showData(ld.getLogsData(), head);
+//		JMenuItem add = new JMenuItem("编辑温度信息");
+//		JPopupMenu menu = new JPopupMenu();
+//		menu.add(add);
+//		TableListener tableListener = new TableListener(menu);
+//		table.addMouseListener(tableListener);
+//		table.addMouseMotionListener(tableListener);
+//		add.addActionListener(tableListener);
 	}
 
-	public void showFoodsData() {
-		dataType = "FoodsData";
-		Object[] head = { "ID", "食品名称", "食品种类", "食品单价", "剩余数量" };
-		showData(FoodDao.instance().getFoodsData(), head);
-		JPopupMenu menu = new JPopupMenu();
-		JMenuItem checkout = new JMenuItem("    添加食品    ");
-		JMenuItem addHours = new JMenuItem("    删除食品    ");
-		menu.add(checkout);
-		menu.add(addHours);
-		TableListener tableListener = new TableListener(menu);
-		table.addMouseListener(tableListener);
-		table.addMouseMotionListener(tableListener);
-		checkout.addActionListener(tableListener);
-		addHours.addActionListener(tableListener);
-	}
+//	public void showRoomTakenData() {
+//		dataType = "RoomsBooked";
+//		Object[] head = { "房号", "房间类型", "电话号码", "预订时长", "预订时间" };
+//		showData(RoomDao.instance().getRoomsTakenData(), head);
+//		JPopupMenu menu = new JPopupMenu();
+//		JMenuItem buyFood = new JMenuItem("    添加酒水    ");
+//		JMenuItem checkout = new JMenuItem("    房间结算    ");
+//		JMenuItem addHours = new JMenuItem("    房间加钟    ");
+//		menu.add(buyFood);
+//		menu.add(checkout);
+//		menu.add(addHours);
+//		TableListener tableListener = new TableListener(menu);
+//		table.addMouseListener(tableListener);
+//		table.addMouseMotionListener(tableListener);
+//		buyFood.addActionListener(tableListener);
+//		checkout.addActionListener(tableListener);
+//		addHours.addActionListener(tableListener);
+//	}
+//
+//	public void showFoodsData() {
+//		dataType = "FoodsData";
+//		Object[] head = { "ID", "食品名称", "食品种类", "食品单价", "剩余数量" };
+//		showData(FoodDao.instance().getFoodsData(), head);
+//		JPopupMenu menu = new JPopupMenu();
+//		JMenuItem checkout = new JMenuItem("    添加食品    ");
+//		JMenuItem addHours = new JMenuItem("    删除食品    ");
+//		menu.add(checkout);
+//		menu.add(addHours);
+//		TableListener tableListener = new TableListener(menu);
+//		table.addMouseListener(tableListener);
+//		table.addMouseMotionListener(tableListener);
+//		checkout.addActionListener(tableListener);
+//		addHours.addActionListener(tableListener);
+//	}
 
 	public void showData(Object[][] data, Object[] head) {
 		table.removeAll();
@@ -219,19 +234,14 @@ public class MainPanel extends JPanel {
 	}
 
 	public void refresh() {
-		if (dataType.equals("AllRooms")) {
-			showAllRoomsData();
-		} else if (dataType.equals("RoomTypes")) {
-			showRoomTypesData();
-		} else if (dataType.equals("RoomsBooked")) {
-//			showRoomsBookedData();
+		if (dataType.equals("video")) {
 			showVideos();
-		} else if (dataType.equals("RoomsTaken")) {
-			showRoomTakenData();
-		} else if (dataType.equals("ExpiredRooms")) {
-			showExpiredRoomsData();
-		} else if (dataType.equals("FoodsData")) {
-			showFoodsData();
-		}
+		} else if (dataType.equals("news")) {
+			showNews();
+		} else if (dataType.equals("temperature")) {
+			showTemperature();
+		} else if (dataType.equals("log")) {
+			showLog();
+		} 
 	}
 }

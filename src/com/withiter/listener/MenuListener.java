@@ -5,12 +5,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import com.withiter.frame.MainFrame;
 import com.withiter.frame.MainPanel;
+import com.withiter.frame.OptionPanel;
 
 public class MenuListener implements ActionListener {
 
-	private JButton btnVideo,btnWords, 
-	btnWeather, btnLog, btnTemperature, btnBackup;
+	private JButton btnVideo,btnWords, btnTemperature,
+	 btnLog, btnWeather, btnBackup;
 	
 
 	public MenuListener(JButton btnVideo, JButton btnWords,
@@ -26,19 +28,27 @@ public class MenuListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		OptionPanel.instance().showAllBtns();
 		if (e.getSource() == btnVideo) {
 			MainPanel.instance().showVideos();
+			MainFrame.CURRENT_PAGE = "video";
+			OptionPanel.instance().jbtnEdit.setVisible(false);
 		} else if (e.getSource() == btnWords) {
 			MainPanel.instance().showNews();
+			MainFrame.CURRENT_PAGE = "news";
+			OptionPanel.instance().jbtnEdit.setVisible(false);
 		} else if (e.getSource() == btnTemperature) {
 			MainPanel.instance().showTemperature();
+			MainFrame.CURRENT_PAGE = "temperature";
+			OptionPanel.instance().jbtnAdd.setVisible(false);
+			OptionPanel.instance().jbtnDel.setVisible(false);
 		} else if (e.getSource() == btnLog) {
-			MainPanel.instance().showAllRoomsData();
-		} else if (e.getSource() == btnWeather) {
-			MainPanel.instance().showRoomTypesData();
-		} else if (e.getSource() == btnBackup) {
-			MainPanel.instance().showFoodsData();
-		}
+			MainPanel.instance().showLog();
+			MainFrame.CURRENT_PAGE = "log";
+			OptionPanel.instance().jbtnAdd.setVisible(false);
+			OptionPanel.instance().jbtnDel.setVisible(false);
+			OptionPanel.instance().jbtnEdit.setVisible(false);
+		} 
 	}
 
 }

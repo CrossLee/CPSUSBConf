@@ -11,7 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.withiter.dao.LogDao;
 import com.withiter.dao.NewsDao;
+import com.withiter.entity.Log;
 import com.withiter.entity.News;
 import com.withiter.utils.InfoUtils;
 
@@ -21,6 +23,7 @@ public class MainFrame extends JFrame implements Runnable {
 	 */
 	private static final long serialVersionUID = -5988513125942516733L;
 	private static MainFrame mainFrame;
+	public static String CURRENT_PAGE = "";
 
 	public static MainFrame instance() {
 		if (mainFrame == null)
@@ -29,7 +32,7 @@ public class MainFrame extends JFrame implements Runnable {
 	}
 
 	public MainFrame() {
-		setTitle("电子站牌u盘导入软件");
+		setTitle("电子站牌u盘系统");
 		mainFrame = this;
 		setUndecorated(true);
 //		loadDatas();
@@ -65,7 +68,9 @@ public class MainFrame extends JFrame implements Runnable {
 		setVisible(true);
 		LoginFrame.instance().setVisible(false);
 		LoginFrame.getLoginDialog().setVisible(false);
-		loadDatas();
+		
+		// load datas from usb
+//		loadDatas();
 		// right bottom panel
 		Container container = getContentPane();
 		container.add(new MainPanel(), BorderLayout.CENTER);
@@ -86,6 +91,15 @@ public class MainFrame extends JFrame implements Runnable {
 		for(News news : newsList){
 			System.out.println(news.index);
 			System.out.println(news.content);
+		}
+		List<Log> logList = LogDao.instance().getlogList();
+		for(Log log : logList){
+			System.out.println(log.ip);
+			System.out.println(log.mac);
+			System.out.println(log.date);
+			System.out.println(log.operation);
+			System.out.println(log.filename);
+			System.out.println(log.result);
 		}
 	}
 	

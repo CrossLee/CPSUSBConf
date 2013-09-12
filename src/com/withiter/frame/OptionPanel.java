@@ -14,10 +14,25 @@ public class OptionPanel extends JPanel {
 	private static final long serialVersionUID = 1613590806361203632L;
 	private static OptionPanel optionPanel;
 	
+	public ImageButton jbtnAdd = new ImageButton("add");
+	public ImageButton jbtnDel = new ImageButton("delete");
+	public ImageButton jbtnEdit = new ImageButton("edit");
+	public ImageButton jbtRefresh = new ImageButton("refresh");
+	public ImageButton jbtExit = new ImageButton("exit");
+	public ImageButton jbtLock = new ImageButton("lock");
+	
 	static public OptionPanel instance(){
 		if(optionPanel == null)
 			optionPanel = new OptionPanel();
 		return optionPanel;
+	}
+	
+	public void showAllBtns(){
+		jbtnAdd.setVisible(true);
+		jbtnDel.setVisible(true);
+		jbtnEdit.setVisible(true);
+		jbtRefresh.setVisible(true);
+		jbtExit.setVisible(true);
 	}
 
 	public OptionPanel() {
@@ -25,41 +40,37 @@ public class OptionPanel extends JPanel {
 		setSize(1366, 150);
 		setOpaque(false);
 		optionPanel = this;
-		ImageButton jbtBookRoom = new ImageButton("book");
-		ImageButton jbtTakeRoom = new ImageButton("take");
-		ImageButton jbtRefresh = new ImageButton("refresh");
-		ImageButton jbtConfig = new ImageButton("config");
-		ImageButton jbtLock = new ImageButton("lock");
-		ImageButton jbtExit = new ImageButton("exit");
+		
+		jbtLock.setVisible(false);
+		
+		jbtnAdd.setToolTipText("添加");
+		jbtnDel.setToolTipText("删除");
+		jbtnEdit.setToolTipText("编辑");
+		jbtRefresh.setToolTipText("刷新");
+		jbtExit.setToolTipText("退出");
+		jbtLock.setToolTipText("注销");
 
-		jbtBookRoom.setToolTipText("　订房　");
-		jbtTakeRoom.setToolTipText("　拿房　");
-		jbtRefresh.setToolTipText("　刷新　");
-		jbtConfig.setToolTipText("　设置　");
-		jbtLock.setToolTipText("　注销　");
-		jbtExit.setToolTipText("　退出　");
-
-		jbtBookRoom.setPreferredSize(new Dimension(80, 80));
-		jbtTakeRoom.setPreferredSize(new Dimension(80, 80));
+		jbtnAdd.setPreferredSize(new Dimension(80, 80));
+		jbtnDel.setPreferredSize(new Dimension(80, 80));
+		jbtnEdit.setPreferredSize(new Dimension(80, 80));
 		jbtRefresh.setPreferredSize(new Dimension(80, 80));
-		jbtConfig.setPreferredSize(new Dimension(80, 80));
-		jbtLock.setPreferredSize(new Dimension(80, 80));
 		jbtExit.setPreferredSize(new Dimension(80, 80));
+		jbtLock.setPreferredSize(new Dimension(80, 80));
 
-		OptionListener optionListener = new OptionListener(jbtBookRoom,
-				jbtTakeRoom, jbtRefresh, jbtConfig, jbtLock, jbtExit);
-		jbtBookRoom.addActionListener(optionListener);
-		jbtTakeRoom.addActionListener(optionListener);
+		OptionListener optionListener = new OptionListener(jbtnAdd,
+				jbtnDel, jbtnEdit, jbtRefresh, jbtExit, jbtLock);
+		jbtnAdd.addActionListener(optionListener);
+		jbtnDel.addActionListener(optionListener);
+		jbtnEdit.addActionListener(optionListener);
 		jbtRefresh.addActionListener(optionListener);
-		jbtConfig.addActionListener(optionListener);
-		jbtLock.addActionListener(optionListener);
 		jbtExit.addActionListener(optionListener);
+		jbtLock.addActionListener(optionListener);
 
-		add(jbtBookRoom);
-		add(jbtTakeRoom);
+		add(jbtnAdd);
+		add(jbtnDel);
+		add(jbtnEdit);
 		add(jbtRefresh);
-		add(jbtConfig);
-		add(jbtLock);
 		add(jbtExit);
+		add(jbtLock);
 	}
 }

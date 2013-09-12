@@ -129,11 +129,17 @@ public class InfoUtils {
 			System.out.println(logtext + " file does not exist!");
 		}else{
 			List<String> list = FileReaderUtils.readFile(logtext);
+			System.out.println("logs's size is: " + list.size());
 			if(list != null){
 				Log log = null;
-				for(int i = 0; i < list.size(); i+= 2){
-					String ip = list.get(i).split("：")[1];
-					String mac = list.get(i+1).split("：")[1];
+				for(int i = 0; i < list.size(); i+= 3){
+					
+					System.out.println("line: "+i+","+list.get(i));
+					System.out.println("line: "+(i+1)+","+list.get(i+1));
+					System.out.println("line: "+(i+2)+","+list.get(i+2));
+					
+					String ip = list.get(i).split(":")[1];
+					String mac = list.get(i+1).split(":")[1];
 					String date = "";
 					String operation = "";
 					String filename = "";
@@ -180,6 +186,7 @@ public class InfoUtils {
 					}
 					
 					log = new Log(ip, mac, date, operation, filename, result);
+					System.out.println(log.toString());
 					LogDao.instance().addLog(log);
 				}
 			}

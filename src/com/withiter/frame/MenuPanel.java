@@ -32,6 +32,10 @@ public class MenuPanel extends JPanel {
 		btnLog = new ImageButton("menu", "日志管理", 16);
 		btnWeather = new ImageButton("menu", "天气管理", 16);
 		btnBackup = new ImageButton("menu", "其他信息", 16);
+		
+		// hide this two button
+		btnWeather.setVisible(false);
+		btnBackup.setVisible(false);
 
 		btnVideo.setPreferredSize(new Dimension(180, 50));
 		btnWords.setPreferredSize(new Dimension(180, 50));

@@ -29,4 +29,11 @@ public class Log {
 		System.out.println(index);
 		System.out.println(content);
 	}
+	
+	public String toString(){
+		return new StringBuilder().append(this.ip).append(", ").append(this.mac)
+				.append(", ").append(this.date).append(", ").append(this.operation)
+				.append(", ").append(this.filename).append(", ").append(this.result)
+				.toString();
+	}
 }

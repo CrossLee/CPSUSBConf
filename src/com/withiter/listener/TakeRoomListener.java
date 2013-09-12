@@ -45,7 +45,7 @@ public class TakeRoomListener implements ActionListener {
 				}
 				takeRoomDialog.dispose();
 				BookingDao.instance().removeBooking(booking);
-				MainPanel.instance().showRoomTakenData();
+//				MainPanel.instance().showRoomTakenData();
 				JOptionPane.showMessageDialog(null,
 						"<html>拿房成功！房间号： <b><font size=8>" + booking.getRoomNumber() + "</font></b>");
 			} else {

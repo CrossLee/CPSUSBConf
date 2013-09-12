@@ -1,11 +1,13 @@
 package com.withiter.frame;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -31,9 +33,13 @@ public class DataTable extends JTable {
 			}
 		});
 		setRowHeight(30);
+		setGridColor(Color.GRAY);
+		setShowHorizontalLines(true);
+		setShowVerticalLines(true);
 		setOpaque(false);
 		setRowSorter(new TableRowSorter<TableModel>(getModel()));
 		setFont(ConfigDao.instance().getConfig().getFont());
+//		setBorder(new LineBorder(Color.BLACK));
 	}
 
 	@Override
@@ -54,7 +60,7 @@ public class DataTable extends JTable {
 			}
 		}
 		if (c instanceof JComponent) {
-			((JLabel) c).setHorizontalAlignment(JLabel.CENTER);
+			((JLabel) c).setHorizontalAlignment(JLabel.LEFT);
 			((JComponent) c).setOpaque(false);
 			if (selected) {
 				((JComponent) c).setOpaque(true);

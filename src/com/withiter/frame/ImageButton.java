@@ -150,8 +150,14 @@ public class ImageButton extends JButton implements MouseListener {
 				img = new ImageIcon(this.getClass().getResource(
 						"/images/" + name + ".png"));
 			} else {
-				img = new ImageIcon(this.getClass().getResource(
-						"/images/" + name + "_" + modal + ".png"));
+				
+				if(this.getToolTipText().equals("添加") || this.getToolTipText().equals("删除")){
+					img = new ImageIcon(this.getClass().getResource(
+							"/images/" + name + ".png"));
+				}else{
+					img = new ImageIcon(this.getClass().getResource(
+							"/images/" + name + "_" + modal + ".png"));
+				}
 			}
 			if (img.getImage() != null)
 				g.drawImage(img.getImage(),

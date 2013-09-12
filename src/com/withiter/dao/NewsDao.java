@@ -28,8 +28,8 @@ public class NewsDao {
 
 	private Object[] formatData(News News) {
 		Object[] result = new Object[5];
-		result[0] = News.index;
-		result[1] = News.content;
+//		result[0] = News.index;
+		result[0] = News.content;
 //		result[2] = News.path;
 //		result[3] = News.size;
 //		result[4] = News.updateTime;

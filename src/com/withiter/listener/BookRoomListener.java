@@ -54,7 +54,7 @@ public class BookRoomListener implements ActionListener {
 						BookRoomDialog.instance().dispose();
 						roomList.get(i).take(
 								Integer.parseInt(jlbDuration.getText()));
-						MainPanel.instance().showRoomTakenData();
+//						MainPanel.instance().showRoomTakenData();
 						JOptionPane.showMessageDialog(null,
 								"<html>开房成功！房间号： <b><font size=8>"
 										+ roomList.get(i).getNumber()
