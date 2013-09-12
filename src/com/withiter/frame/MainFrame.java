@@ -35,26 +35,25 @@ public class MainFrame extends JFrame implements Runnable {
 		setTitle("电子站牌u盘系统");
 		mainFrame = this;
 		setUndecorated(true);
-//		loadDatas();
-		// setAlwaysOnTop(true);
-		
+		setAlwaysOnTop(true);
+
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension screenSize = tk.getScreenSize();
-//		int x = (int) screenSize.getWidth();
-//		int y = (int) screenSize.getHeight();
-//		this.setBounds((x - 1140) / 2, (y - 700) / 2, 1140, 700);
+		// int x = (int) screenSize.getWidth();
+		// int y = (int) screenSize.getHeight();
+		// this.setBounds((x - 1140) / 2, (y - 700) / 2, 1140, 700);
 		setSize(screenSize);
 		setMinimumSize(new Dimension(1024, 768));
 
 		Container container = getContentPane();
 		container.setLayout(new BorderLayout());
-//		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// setExtendedState(JFrame.MAXIMIZED_BOTH);
 		// top option panel
 		container.add(new OptionPanel(), BorderLayout.NORTH);
 		// left menu panel
 		container.add(new MenuPanel(), BorderLayout.WEST);
 		// right bottom panel
-//		container.add(new MainPanel(), BorderLayout.CENTER);
+		// container.add(new MainPanel(), BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(new ImageIcon(this.getClass().getResource(
 				"/images/icon.png")).getImage());
@@ -68,16 +67,17 @@ public class MainFrame extends JFrame implements Runnable {
 		setVisible(true);
 		LoginFrame.instance().setVisible(false);
 		LoginFrame.getLoginDialog().setVisible(false);
-		
+
 		// load datas from usb
-//		loadDatas();
+		 loadDatas();
+		 
 		// right bottom panel
 		Container container = getContentPane();
 		container.add(new MainPanel(), BorderLayout.CENTER);
 	}
 
 	// load all information from usb
-	private void loadDatas(){
+	private void loadDatas() {
 		InfoUtils.loadVideoInfo();
 		try {
 			InfoUtils.loadNewsInfo();
@@ -86,14 +86,14 @@ public class MainFrame extends JFrame implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		List<News> newsList = NewsDao.instance().getnewsList();
-		for(News news : newsList){
+		for (News news : newsList) {
 			System.out.println(news.index);
 			System.out.println(news.content);
 		}
 		List<Log> logList = LogDao.instance().getlogList();
-		for(Log log : logList){
+		for (Log log : logList) {
 			System.out.println(log.ip);
 			System.out.println(log.mac);
 			System.out.println(log.date);
@@ -102,7 +102,7 @@ public class MainFrame extends JFrame implements Runnable {
 			System.out.println(log.result);
 		}
 	}
-	
+
 	@Override
 	public void run() {
 		instance();

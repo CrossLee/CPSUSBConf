@@ -13,17 +13,16 @@ import com.withiter.frame.MainFrame;
 import com.withiter.frame.MainPanel;
 import com.withiter.frame.TakeRoomDialog;
 
-public class OptionListener implements ActionListener{
+public class OptionListener implements ActionListener {
 	JButton jbtnAdd;
 	JButton jbtnDel;
 	JButton jbtnEdit;
 	JButton jbtRefresh;
 	JButton jbtExit;
 	JButton jbtLock;
-	
-	public OptionListener(JButton jbtnAdd, JButton jbtnDel,
-			JButton jbtnEdit, JButton jbtRefresh, JButton jbtExit,
-			JButton jbtLock) {
+
+	public OptionListener(JButton jbtnAdd, JButton jbtnDel, JButton jbtnEdit,
+			JButton jbtRefresh, JButton jbtExit, JButton jbtLock) {
 		super();
 		this.jbtnAdd = jbtnAdd;
 		this.jbtnDel = jbtnDel;
@@ -35,43 +34,43 @@ public class OptionListener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		// check the current page
-		if(MainFrame.CURRENT_PAGE.equals("video")){
-			if(e.getSource() == jbtnAdd){
+		if (MainFrame.CURRENT_PAGE.equals("video")) {
+			if (e.getSource() == jbtnAdd) {
 				BookRoomDialog.instance().open();
-			}else if(e.getSource() == jbtnDel){
+			} else if (e.getSource() == jbtnDel) {
 				TakeRoomDialog.instance().open();
-			}else if(e.getSource() == jbtRefresh){
+			} else if (e.getSource() == jbtRefresh) {
 				MainPanel.instance().refresh();
-			}else if(e.getSource() == jbtExit){
+			} else if (e.getSource() == jbtExit) {
 				System.exit(0);
 			}
 		}
-		if(MainFrame.CURRENT_PAGE.equals("news")){
-			if(e.getSource() == jbtnAdd){
+		if (MainFrame.CURRENT_PAGE.equals("news")) {
+			if (e.getSource() == jbtnAdd) {
 				BookRoomDialog.instance().open();
-			}else if(e.getSource() == jbtnDel){
+			} else if (e.getSource() == jbtnDel) {
 				TakeRoomDialog.instance().open();
-			}else if(e.getSource() == jbtRefresh){
+			} else if (e.getSource() == jbtRefresh) {
 				MainPanel.instance().refresh();
-			}else if(e.getSource() == jbtExit){
+			} else if (e.getSource() == jbtExit) {
 				System.exit(0);
 			}
 		}
-		if(MainFrame.CURRENT_PAGE.equals("temperature")){
-			if(e.getSource() == jbtnEdit){
-//				ConfigDialog.instance().open();
-			}else if(e.getSource() == jbtRefresh){
+		if (MainFrame.CURRENT_PAGE.equals("temperature")) {
+			if (e.getSource() == jbtnEdit) {
+				// ConfigDialog.instance().open();
+			} else if (e.getSource() == jbtRefresh) {
 				MainPanel.instance().refresh();
-			}else if(e.getSource() == jbtExit){
+			} else if (e.getSource() == jbtExit) {
 				System.exit(0);
 			}
 		}
-		if(MainFrame.CURRENT_PAGE.equals("log")){
-			if(e.getSource() == jbtRefresh){
+		if (MainFrame.CURRENT_PAGE.equals("log")) {
+			if (e.getSource() == jbtRefresh) {
 				MainPanel.instance().refresh();
-			}else if(e.getSource() == jbtExit){
+			} else if (e.getSource() == jbtExit) {
 				System.exit(0);
 			}
 		}
