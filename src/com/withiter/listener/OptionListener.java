@@ -35,6 +35,8 @@ public class OptionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		// TODO add menu functions here
+		
 		// check the current page
 		if (MainFrame.CURRENT_PAGE.equals("video")) {
 			if (e.getSource() == jbtnAdd) {
