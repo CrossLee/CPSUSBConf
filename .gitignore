@@ -1,3 +1,4 @@
+.classpath
 *.class
 
 # Package Files #
@@ -9,5 +10,5 @@ bin/*
 /bin/*
 
 .settings/*
-.classpath
+
 
