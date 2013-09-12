@@ -28,6 +28,7 @@ public class MenuListener implements ActionListener {
 		if (e.getSource() == jbtRoomsBooked) {
 //			MainPanel.instance().showRoomsBookedData();
 			MainPanel.instance().showVideos();
+			
 		} else if (e.getSource() == jbtRoomsTaken) {
 			MainPanel.instance().showRoomTakenData();
 		} else if (e.getSource() == jbtExpiredRooms) {
