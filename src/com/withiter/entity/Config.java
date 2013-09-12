@@ -33,7 +33,7 @@ public class Config {
 		this.hoursTaken = hoursTaken;
 		this.hoursAdded = hoursAdded;
 		this.font = font;
-		this.copyright = "关注前沿，追求卓越。";
+		this.copyright = "电子站牌u盘导入软件";
 		this.background = background;
 		File file = new File(background);
 		if (file.exists()) {
