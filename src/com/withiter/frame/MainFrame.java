@@ -4,18 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import com.withiter.dao.VideoDao;
-import com.withiter.entity.USBConfig;
-import com.withiter.entity.Video;
+import com.withiter.dao.NewsDao;
+import com.withiter.entity.News;
+import com.withiter.utils.InfoUtils;
 
 public class MainFrame extends JFrame implements Runnable {
 	/**
@@ -75,39 +73,19 @@ public class MainFrame extends JFrame implements Runnable {
 
 	// load all information from usb
 	private void loadDatas(){
-		System.out.println("start to load datas from usb");
-		String rootPath = USBConfig.drivePath;
-		if(rootPath == null){
-			JOptionPane.showMessageDialog(null, "未检测到U盘，请在登陆前插入U盘。点击确定退出系统", "提示",
-					JOptionPane.OK_OPTION);
-			System.exit(0);
+		InfoUtils.loadVideoInfo();
+		try {
+			InfoUtils.loadNewsInfo();
+			InfoUtils.loadTemperatureInfo();
+			InfoUtils.loadLogInfo();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		String videonewFolder = rootPath + USBConfig.VIDEO_NEW_FOLDER + "\\";
-		String initnewFolder = rootPath + USBConfig.INIT_NEW_FOLDER + "\\";
-		String videoiniFile = initnewFolder + "video.ini";
-		String newsiniFile = initnewFolder + "news.ini";
-		String temperatureiniFile = initnewFolder + "temperature.ini";
-		String logfile = rootPath + "logfile.txt";
 		
-		System.out.println(videonewFolder);
-		System.out.println(initnewFolder);
-		System.out.println(videoiniFile);
-		System.out.println(newsiniFile);
-		System.out.println(temperatureiniFile);
-		System.out.println(logfile);
-		
-		File videoFilesPath = new File(videonewFolder);
-		File[] videos = videoFilesPath.listFiles();
-		Video v = null;
-		for(File f : videos){
-			System.out.println(f.getName());
-			String name = f.getName();
-			String ext = name.substring(name.lastIndexOf("."), name.length());
-			String path = f.getAbsolutePath();
-			String size = String.valueOf((f.length()/1024/1024));
-			String updateDate = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(new Date(f.lastModified()));
-			v = new Video(name, ext, path, size, updateDate);
-			VideoDao.instance().addVideo(v);
+		List<News> newsList = NewsDao.instance().getnewsList();
+		for(News news : newsList){
+			System.out.println(news.index);
+			System.out.println(news.content);
 		}
 	}
 	

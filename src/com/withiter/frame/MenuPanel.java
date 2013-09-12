@@ -27,33 +27,33 @@ public class MenuPanel extends JPanel {
 
 		ImageButton btnVideo, btnWeather, btnTemperature, btnWords, btnLog, btnBackup;
 		btnVideo = new ImageButton("menu", "视频管理", 16);
-		btnWeather = new ImageButton("menu", "天气管理", 16);
+		btnWords = new ImageButton("menu", "新闻管理", 16);
 		btnTemperature = new ImageButton("menu", "温度管理", 16);
-		btnWords = new ImageButton("menu", "文字管理", 16);
 		btnLog = new ImageButton("menu", "日志管理", 16);
+		btnWeather = new ImageButton("menu", "天气管理", 16);
 		btnBackup = new ImageButton("menu", "其他信息", 16);
 
 		btnVideo.setPreferredSize(new Dimension(180, 50));
-		btnWeather.setPreferredSize(new Dimension(180, 50));
-		btnTemperature.setPreferredSize(new Dimension(180, 50));
 		btnWords.setPreferredSize(new Dimension(180, 50));
+		btnTemperature.setPreferredSize(new Dimension(180, 50));
 		btnLog.setPreferredSize(new Dimension(180, 50));
+		btnWeather.setPreferredSize(new Dimension(180, 50));
 		btnBackup.setPreferredSize(new Dimension(180, 50));
 
-		MenuListener menuListener = new MenuListener(btnVideo,
-				btnWeather, btnTemperature, btnWords, btnLog, btnBackup);
+		MenuListener menuListener = new MenuListener(btnVideo,btnWords
+				, btnTemperature, btnLog, btnWeather, btnBackup);
 		btnVideo.addActionListener(menuListener);
-		btnWeather.addActionListener(menuListener);
-		btnTemperature.addActionListener(menuListener);
 		btnWords.addActionListener(menuListener);
+		btnTemperature.addActionListener(menuListener);
 		btnLog.addActionListener(menuListener);
+		btnWeather.addActionListener(menuListener);
 		btnBackup.addActionListener(menuListener);
 
 		add(btnVideo);
-		add(btnWeather);
-		add(btnTemperature);
 		add(btnWords);
+		add(btnTemperature);
 		add(btnLog);
+		add(btnWeather);
 		add(btnBackup);
 	}
 }

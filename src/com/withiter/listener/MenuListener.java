@@ -9,35 +9,34 @@ import com.withiter.frame.MainPanel;
 
 public class MenuListener implements ActionListener {
 
-	private JButton jbtRoomsBooked, jbtRoomsTaken, jbtExpiredRooms, jbtRooms,
-			jbtRoomTypes, jbtFoods;
+	private JButton btnVideo,btnWords, 
+	btnWeather, btnLog, btnTemperature, btnBackup;
+	
 
-	public MenuListener(JButton jbtRoomsBooked, JButton jbtRoomsTaken,
-			JButton jbtExpiredRooms, JButton jbtRooms, JButton jbtRoomTypes,
-			JButton jbtFoods) {
-		this.jbtRoomsBooked = jbtRoomsBooked;
-		this.jbtRoomsTaken = jbtRoomsTaken;
-		this.jbtExpiredRooms = jbtExpiredRooms;
-		this.jbtRooms = jbtRooms;
-		this.jbtRoomTypes = jbtRoomTypes;
-		this.jbtFoods = jbtFoods;
+	public MenuListener(JButton btnVideo, JButton btnWords,
+			JButton btnTemperature, JButton btnLog, JButton btnWeather, 
+			JButton btnBackup) {
+		this.btnVideo = btnVideo;
+		this.btnWords = btnWords;
+		this.btnTemperature = btnTemperature;
+		this.btnLog = btnLog;
+		this.btnWeather = btnWeather;
+		this.btnBackup = btnBackup;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == jbtRoomsBooked) {
-//			MainPanel.instance().showRoomsBookedData();
+		if (e.getSource() == btnVideo) {
 			MainPanel.instance().showVideos();
-			
-		} else if (e.getSource() == jbtRoomsTaken) {
-			MainPanel.instance().showRoomTakenData();
-		} else if (e.getSource() == jbtExpiredRooms) {
-			MainPanel.instance().showExpiredRoomsData();
-		} else if (e.getSource() == jbtRooms) {
+		} else if (e.getSource() == btnWords) {
+			MainPanel.instance().showNews();
+		} else if (e.getSource() == btnTemperature) {
+			MainPanel.instance().showTemperature();
+		} else if (e.getSource() == btnLog) {
 			MainPanel.instance().showAllRoomsData();
-		} else if (e.getSource() == jbtRoomTypes) {
+		} else if (e.getSource() == btnWeather) {
 			MainPanel.instance().showRoomTypesData();
-		} else if (e.getSource() == jbtFoods) {
+		} else if (e.getSource() == btnBackup) {
 			MainPanel.instance().showFoodsData();
 		}
 	}

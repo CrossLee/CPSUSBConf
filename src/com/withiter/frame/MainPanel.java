@@ -11,10 +11,11 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import com.withiter.dao.BookingDao;
 import com.withiter.dao.FoodDao;
+import com.withiter.dao.NewsDao;
 import com.withiter.dao.RoomDao;
 import com.withiter.dao.RoomTypeDao;
+import com.withiter.dao.TemperatureDao;
 import com.withiter.dao.VideoDao;
 import com.withiter.listener.TableListener;
 
@@ -147,6 +148,33 @@ public class MainPanel extends JPanel {
 		table.addMouseMotionListener(tableListener);
 		add.addActionListener(tableListener);
 		delete.addActionListener(tableListener);
+	}
+	public void showNews(){
+		Object[] head = { "新闻标示", "新闻内容", "", "", "" };
+		NewsDao nd = NewsDao.instance();
+		showData(nd.getNewssData(), head);
+		JMenuItem add = new JMenuItem("添加新闻");
+		JMenuItem delete = new JMenuItem("删除新闻");
+		JPopupMenu menu = new JPopupMenu();
+		menu.add(add);
+		menu.add(delete);
+		TableListener tableListener = new TableListener(menu);
+		table.addMouseListener(tableListener);
+		table.addMouseMotionListener(tableListener);
+		add.addActionListener(tableListener);
+		delete.addActionListener(tableListener);
+	}
+	public void showTemperature(){
+		Object[] head = { "温度信息", "", "", "", "" };
+		TemperatureDao td = TemperatureDao.instance();
+		showData(td.getTemperaturesData(), head);
+		JMenuItem add = new JMenuItem("编辑温度信息");
+		JPopupMenu menu = new JPopupMenu();
+		menu.add(add);
+		TableListener tableListener = new TableListener(menu);
+		table.addMouseListener(tableListener);
+		table.addMouseMotionListener(tableListener);
+		add.addActionListener(tableListener);
 	}
 
 	public void showRoomTakenData() {
