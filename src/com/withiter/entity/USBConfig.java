@@ -5,8 +5,17 @@ import java.util.Set;
 public class USBConfig {
 
 	public static Set<String> EXTS;
+	/**
+	 * videonew
+	 */
 	public static String VIDEO_NEW_FOLDER;
+	/**
+	 * ininew
+	 */
 	public static String INIT_NEW_FOLDER;
+	/**
+	 * \Storage card\videodata\
+	 */
 	public static String VIDEO_PATH;
 	public static int VIDEO_MAX_NUMBER;
 	public static int NEWS_MAX_CHARS;

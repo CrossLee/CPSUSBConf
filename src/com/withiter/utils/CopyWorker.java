@@ -1,12 +1,14 @@
 package com.withiter.utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import com.withiter.dao.VideoDao;
+import com.withiter.entity.USBConfig;
 import com.withiter.entity.Video;
 import com.withiter.frame.MainPanel;
 
@@ -40,6 +42,19 @@ public class CopyWorker implements Runnable {
 		Video v = new Video(name, ext, path, size, updateDate);
 		VideoDao.instance().addVideo(v);
 		MainPanel.instance().refresh();
+		
+		// update ini file
+		String videoIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\video.ini";
+		File f = new File(videoIni);
+		f.deleteOnExit();
+		try {
+			f.createNewFile();
+			VideoDao.instance().writeToIniFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	private void doWork() {

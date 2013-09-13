@@ -3,9 +3,11 @@ package com.withiter.utils;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -32,6 +34,17 @@ public class FileReaderUtils {
 		}
 		br.close();
 		return list;
+	}
+	
+	public static void writeToFile(List<String> lines, File f) throws IOException{
+		FileWriter fw = new FileWriter(f);
+		BufferedWriter bw = new BufferedWriter(fw);
+		for(String s : lines){
+			bw.append(s);
+			bw.newLine();
+		}
+		bw.flush();
+		bw.close();
 	}
 
 	public static String code(File f) throws IOException {
