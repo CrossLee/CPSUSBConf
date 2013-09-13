@@ -27,10 +27,7 @@ public class CopyWorker implements Runnable {
 
 	public void run() {
 		this.doWork();
-//		try {
-//			TimeUnit.SECONDS.sleep(10);
-//		} catch (InterruptedException ie) {
-//		}
+		long start = System.currentTimeMillis();
 		System.out.println(this.name + " task finished!");
 		this.downLatch.countDown();
 		String name = des.getName();
@@ -54,7 +51,15 @@ public class CopyWorker implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		long end = System.currentTimeMillis();
+		long period = end - start;
+		System.out.println("Copying file cost time in millis : " + period);
+		if(period < 3 * 1000){
+			try {
+				TimeUnit.SECONDS.sleep(2);
+			} catch (InterruptedException ie) {
+			}
+		}
 	}
 
 	private void doWork() {

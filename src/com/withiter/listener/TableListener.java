@@ -4,27 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
 
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 
-import com.withiter.dao.BookingDao;
-import com.withiter.dao.FoodDao;
-import com.withiter.dao.RoomDao;
-import com.withiter.dao.RoomTypeDao;
-import com.withiter.entity.Booking;
-import com.withiter.entity.Food;
-import com.withiter.entity.Room;
-import com.withiter.entity.RoomType;
-import com.withiter.frame.AddFoodDialog;
-import com.withiter.frame.AddRoomDialog;
-import com.withiter.frame.AddRoomTypeDialog;
-import com.withiter.frame.BuyFoodDialog;
 import com.withiter.frame.DataTable;
-import com.withiter.frame.EditRoomTypeDialog;
 import com.withiter.frame.MainPanel;
 
 public class TableListener extends MouseAdapter implements ActionListener {
@@ -63,102 +49,102 @@ public class TableListener extends MouseAdapter implements ActionListener {
 		if (!isSure("<html>您确定要进行<b><font size=6> " + strAction
 				+ " </font></b>操作吗？"))
 			return;
-		if (strAction.equals("添加酒水")) {
-			BuyFoodDialog.instance().open();
-			return;
-		} else if (strAction.equals("房间结算")) {
-			String tmpStr = getSelectedValue(0);
-			if (tmpStr == null)
-				return;
-			Room room = RoomDao.instance().getRoom(Integer.parseInt(tmpStr));
-			removeSelectedRow();
-			JOptionPane.showMessageDialog(null,
-					"<html>结算成功！总消费<b><font size=8>  " + room.getMoney()
-							+ " </font></b>元。");
-			room.end();
-			return;
-		} else if (strAction.equals("房间加钟")) {
-			String tmpStr = getSelectedValue(0);
-			if (tmpStr == null)
-				return;
-			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
-			Room room = RoomDao.instance().getRoom(Integer.parseInt(tmpStr));
-			room.addHours();
-			SimpleDateFormat formatter = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");
-			tableModel.setValueAt(room.getMoney(), table.getSelectedRow(), 2);
-			tableModel.setValueAt(formatter.format(room.getEndTime()),
-					table.getSelectedRow(), 4);
-		} else if (strAction.equals("开通房间")) {
-			String tmpStr = getSelectedValue(2);
-			if (tmpStr == null)
-				return;
-			BookingDao bookingDao = BookingDao.instance();
-			Booking booking = bookingDao.getBooking(tmpStr);
-			RoomDao.instance().getRoom(booking.getRoomId())
-					.take(booking.getHours());
-			bookingDao.removeBooking(booking);
-			removeSelectedRow();
-			JOptionPane.showMessageDialog(
-					null,
-					"<html>开通房间成功！房间号：<b><font size=8>  "
-							+ booking.getRoomNumber() + " </font></b>");
-			return;
-		} else if (strAction.equals("删除订单")) {
-			BookingDao bookingDao = BookingDao.instance();
-			for (int row : table.getSelectedRows()) {
-				Booking booking = bookingDao.getBooking(getValue(row, 2));
-				bookingDao.removeBooking(booking);
-			}
-			removeSelectedRows();
-		} else if (strAction.equals("添加房间")) {
-			AddRoomDialog.instance().open(false);
-			return;
-		} else if (strAction.equals("批量添加")) {
-			AddRoomDialog.instance().open(true);
-			return;
-		} else if (strAction.equals("删除房间")) {
-			RoomDao roomDao = RoomDao.instance();
-			for (int row : table.getSelectedRows()) {
-				Room room = roomDao.getRoom(Integer.parseInt(getValue(row, 0)));
-				roomDao.removeRoom(room);
-			}
-			removeSelectedRows();
-		} else if (strAction.equals("添加食品")) {
-			AddFoodDialog.instance().open();
-			return;
-		} else if (strAction.equals("删除食品")) {
-			FoodDao foodDao = FoodDao.instance();
-			for (int row : table.getSelectedRows()) {
-				Food food = foodDao.getFoodbyId(Integer.parseInt(getValue(row,
-						0)));
-				if (food == null)
-					return;
-				foodDao.removeFood(food);
-			}
-			removeSelectedRows();
-		} else if (strAction.equals("添加类型")) {
-			AddRoomTypeDialog.instance().open();
-			return;
-		} else if (strAction.equals("编辑类型")) {
-			RoomTypeDao roomTypeDao = RoomTypeDao.instance();
-			RoomType roomType = roomTypeDao.getRoomTypebyId(Integer
-					.parseInt(getValue(table.getSelectedRow(), 0)));
-			if (roomType == null)
-				return;
-			EditRoomTypeDialog.instance().open(roomType);
-			return;
-		} else if (strAction.equals("删除类型")) {
-			RoomTypeDao roomTypeDao = RoomTypeDao.instance();
-			for (int row : table.getSelectedRows()) {
-				RoomType roomType = roomTypeDao.getRoomTypebyId(Integer
-						.parseInt(getValue(row, 0)));
-				if (roomType == null)
-					return;
-				roomTypeDao.removeRoomType(roomType);
-			}
-			removeSelectedRows();
-		}
+//		if (strAction.equals("添加酒水")) {
+//			BuyFoodDialog.instance().open();
+//			return;
+//		} else if (strAction.equals("房间结算")) {
+//			String tmpStr = getSelectedValue(0);
+//			if (tmpStr == null)
+//				return;
+//			Room room = RoomDao.instance().getRoom(Integer.parseInt(tmpStr));
+//			removeSelectedRow();
+//			JOptionPane.showMessageDialog(null,
+//					"<html>结算成功！总消费<b><font size=8>  " + room.getMoney()
+//							+ " </font></b>元。");
+//			room.end();
+//			return;
+//		} else if (strAction.equals("房间加钟")) {
+//			String tmpStr = getSelectedValue(0);
+//			if (tmpStr == null)
+//				return;
+//			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+//			Room room = RoomDao.instance().getRoom(Integer.parseInt(tmpStr));
+//			room.addHours();
+//			SimpleDateFormat formatter = new SimpleDateFormat(
+//					"yyyy-MM-dd HH:mm:ss");
+//			tableModel.setValueAt(room.getMoney(), table.getSelectedRow(), 2);
+//			tableModel.setValueAt(formatter.format(room.getEndTime()),
+//					table.getSelectedRow(), 4);
+//		} else if (strAction.equals("开通房间")) {
+//			String tmpStr = getSelectedValue(2);
+//			if (tmpStr == null)
+//				return;
+//			BookingDao bookingDao = BookingDao.instance();
+//			Booking booking = bookingDao.getBooking(tmpStr);
+//			RoomDao.instance().getRoom(booking.getRoomId())
+//					.take(booking.getHours());
+//			bookingDao.removeBooking(booking);
+//			removeSelectedRow();
+//			JOptionPane.showMessageDialog(
+//					null,
+//					"<html>开通房间成功！房间号：<b><font size=8>  "
+//							+ booking.getRoomNumber() + " </font></b>");
+//			return;
+//		} else if (strAction.equals("删除订单")) {
+//			BookingDao bookingDao = BookingDao.instance();
+//			for (int row : table.getSelectedRows()) {
+//				Booking booking = bookingDao.getBooking(getValue(row, 2));
+//				bookingDao.removeBooking(booking);
+//			}
+//			removeSelectedRows();
+//		} else if (strAction.equals("添加房间")) {
+//			AddRoomDialog.instance().open(false);
+//			return;
+//		} else if (strAction.equals("批量添加")) {
+//			AddRoomDialog.instance().open(true);
+//			return;
+//		} else if (strAction.equals("删除房间")) {
+//			RoomDao roomDao = RoomDao.instance();
+//			for (int row : table.getSelectedRows()) {
+//				Room room = roomDao.getRoom(Integer.parseInt(getValue(row, 0)));
+//				roomDao.removeRoom(room);
+//			}
+//			removeSelectedRows();
+//		} else if (strAction.equals("添加食品")) {
+//			AddFoodDialog.instance().open();
+//			return;
+//		} else if (strAction.equals("删除食品")) {
+//			FoodDao foodDao = FoodDao.instance();
+//			for (int row : table.getSelectedRows()) {
+//				Food food = foodDao.getFoodbyId(Integer.parseInt(getValue(row,
+//						0)));
+//				if (food == null)
+//					return;
+//				foodDao.removeFood(food);
+//			}
+//			removeSelectedRows();
+//		} else if (strAction.equals("添加类型")) {
+//			AddRoomTypeDialog.instance().open();
+//			return;
+//		} else if (strAction.equals("编辑类型")) {
+//			RoomTypeDao roomTypeDao = RoomTypeDao.instance();
+//			RoomType roomType = roomTypeDao.getRoomTypebyId(Integer
+//					.parseInt(getValue(table.getSelectedRow(), 0)));
+//			if (roomType == null)
+//				return;
+//			EditRoomTypeDialog.instance().open(roomType);
+//			return;
+//		} else if (strAction.equals("删除类型")) {
+//			RoomTypeDao roomTypeDao = RoomTypeDao.instance();
+//			for (int row : table.getSelectedRows()) {
+//				RoomType roomType = roomTypeDao.getRoomTypebyId(Integer
+//						.parseInt(getValue(row, 0)));
+//				if (roomType == null)
+//					return;
+//				roomTypeDao.removeRoomType(roomType);
+//			}
+//			removeSelectedRows();
+//		}
 		JOptionPane.showMessageDialog(null, strAction + "成功！");
 	}
 
