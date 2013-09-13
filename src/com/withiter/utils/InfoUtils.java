@@ -56,7 +56,7 @@ public class InfoUtils {
 			String ext = name.substring(name.lastIndexOf("."), name.length());
 			String path = f.getAbsolutePath();
 			String size = String.valueOf((f.length()/1024/1024));
-			String updateDate = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(new Date(f.lastModified()));
+			String updateDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(f.lastModified()));
 			v = new Video(name, ext, path, size, updateDate);
 			VideoDao.instance().addVideo(v);
 		}

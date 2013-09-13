@@ -18,8 +18,6 @@ import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.painter.MattePainter;
 import org.jdesktop.swingx.painter.Painter;
 
-import com.sun.awt.AWTUtilities;
-
 public class BusyDialog {
 
 	public JFrame frame = new JFrame("Loading");

@@ -3,6 +3,8 @@ package com.withiter.listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -14,6 +16,7 @@ import javax.swing.filechooser.FileFilter;
 
 import com.withiter.dao.VideoDao;
 import com.withiter.entity.USBConfig;
+import com.withiter.entity.Video;
 import com.withiter.frame.MainFrame;
 import com.withiter.frame.MainPanel;
 import com.withiter.frame.TakeRoomDialog;

@@ -16,7 +16,7 @@ public class LodingWorker implements Runnable {
         System.out.println("Loading......");  
         try {  
             this.downLatch.await();  
-        } catch (InterruptedException e) {  
+        } catch (InterruptedException e) {
         }
         this.bd.frame.dispose();
         System.out.println("Loading finished");  

@@ -1,7 +1,6 @@
 package com.withiter.frame;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -10,7 +9,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
 
 import com.withiter.dao.LogDao;
 import com.withiter.dao.NewsDao;
