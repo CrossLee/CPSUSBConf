@@ -35,7 +35,7 @@ public class MainFrame extends JFrame implements Runnable {
 		setTitle("电子站牌u盘系统");
 		mainFrame = this;
 		setUndecorated(true);
-		setAlwaysOnTop(true);
+//		setAlwaysOnTop(true);
 
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension screenSize = tk.getScreenSize();

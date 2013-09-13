@@ -50,5 +50,16 @@ public class VideoDao {
 	public List<Video> getvideoList() {
 		return videoList;
 	}
+	
+	public boolean videoNotExist(String name){
+		boolean flag = true;
+		for(Video v : videoList){
+			if(v.name.equalsIgnoreCase(name)){
+				flag = false;
+				break;
+			}
+		}
+		return flag;
+	}
 
 }
