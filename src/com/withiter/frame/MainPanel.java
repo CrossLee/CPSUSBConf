@@ -42,6 +42,7 @@ public class MainPanel extends JPanel {
 //		jscrolPane.setBorder(new LineBorder(Color.BLACK));
 		jscrolPane.setOpaque(false);
 		jscrolPane.getViewport().setOpaque(false);
+		jscrolPane.setAutoscrolls(true);
 		add(jscrolPane);
 //		showRoomsBookedData();
 		showVideos();
@@ -133,7 +134,7 @@ public class MainPanel extends JPanel {
 	
 	public void showVideos(){
 		dataType = "video";
-		Object[] head = { "视频名称", "后缀类型", "文件路径", "文件大小", "添加时间" };
+		Object[] head = { "视频名称", "后缀类型", "文件路径", "文件大小（M）", "添加时间" };
 		VideoDao vd = VideoDao.instance();
 		showData(vd.getVideosData(), head);
 		JMenuItem add = new JMenuItem("添加视频");

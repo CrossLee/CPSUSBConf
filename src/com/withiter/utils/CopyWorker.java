@@ -27,10 +27,10 @@ public class CopyWorker implements Runnable {
 
 	public void run() {
 		this.doWork();
-		try {
-			TimeUnit.SECONDS.sleep(10);
-		} catch (InterruptedException ie) {
-		}
+//		try {
+//			TimeUnit.SECONDS.sleep(10);
+//		} catch (InterruptedException ie) {
+//		}
 		System.out.println(this.name + " task finished!");
 		this.downLatch.countDown();
 		String name = des.getName();

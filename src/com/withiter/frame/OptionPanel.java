@@ -41,6 +41,10 @@ public class OptionPanel extends JPanel {
 		setOpaque(false);
 		optionPanel = this;
 		
+		// first time to display
+		MainFrame.CURRENT_PAGE = "video";
+		OptionPanel.instance().showAllBtns();
+		jbtnEdit.setVisible(false);
 		jbtLock.setVisible(false);
 		
 		jbtnAdd.setToolTipText("添加");

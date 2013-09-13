@@ -3,11 +3,11 @@ package com.withiter.frame;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -27,7 +27,8 @@ public class DataTable extends JTable {
 	public DataTable(final Object[][] data, Object[] head) {
 		super(new DefaultTableModel(data, head) {
 			public Class<?> getColumnClass(int column) {
-				if (data.length > 0 && column < getRowCount() && getValueAt(0, column) != null)
+				if (data.length > 0 && column < getRowCount()
+						&& getValueAt(0, column) != null)
 					return getValueAt(0, column).getClass();
 				return Object.class;
 			}
@@ -39,7 +40,20 @@ public class DataTable extends JTable {
 		setOpaque(false);
 		setRowSorter(new TableRowSorter<TableModel>(getModel()));
 		setFont(ConfigDao.instance().getConfig().getFont());
-//		setBorder(new LineBorder(Color.BLACK));
+		// setBorder(new LineBorder(Color.BLACK));
+	}
+
+	@Override
+	public String getToolTipText(MouseEvent e) {
+		int row = this.rowAtPoint(e.getPoint());
+		int col = this.columnAtPoint(e.getPoint());
+		String tiptextString = null;
+		if (row > -1 && col > -1) {
+			Object value = this.getValueAt(row, col);
+			if (null != value && !"".equals(value))
+				tiptextString = value.toString();// 悬浮显示单元格内容
+		}
+		return tiptextString;
 	}
 
 	@Override

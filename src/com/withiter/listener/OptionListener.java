@@ -3,8 +3,6 @@ package com.withiter.listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,10 +14,8 @@ import javax.swing.filechooser.FileFilter;
 
 import com.withiter.dao.VideoDao;
 import com.withiter.entity.USBConfig;
-import com.withiter.entity.Video;
 import com.withiter.frame.MainFrame;
 import com.withiter.frame.MainPanel;
-import com.withiter.frame.TakeRoomDialog;
 import com.withiter.utils.BusyDialog;
 import com.withiter.utils.CopyWorker;
 import com.withiter.utils.LodingWorker;
@@ -82,7 +78,7 @@ public class OptionListener implements ActionListener {
 					}
 				}
 			} else if (e.getSource() == jbtnDel) {
-				TakeRoomDialog.instance().open();
+//				TakeRoomDialog.instance().open();
 			} else if (e.getSource() == jbtRefresh) {
 				MainPanel.instance().refresh();
 			} else if (e.getSource() == jbtExit) {
@@ -93,7 +89,7 @@ public class OptionListener implements ActionListener {
 			if (e.getSource() == jbtnAdd) {
 				// BookRoomDialog.instance().open();
 			} else if (e.getSource() == jbtnDel) {
-				TakeRoomDialog.instance().open();
+//				TakeRoomDialog.instance().open();
 			} else if (e.getSource() == jbtRefresh) {
 				MainPanel.instance().refresh();
 			} else if (e.getSource() == jbtExit) {

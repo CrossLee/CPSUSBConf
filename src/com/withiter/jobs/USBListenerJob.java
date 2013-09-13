@@ -53,10 +53,9 @@ public class USBListenerJob implements Runnable {
 						}
 					}
 					if (sign == false) {
-						System.out.println("Quit:" + roots[i].toString());
 						JOptionPane.showMessageDialog(null, "检测到U盘移除"+uDiskDrive+"，点击确定退出系统", "提示",
 								JOptionPane.OK_OPTION);
-						System.out.println("Enter:" + uDiskDrive);
+						System.out.println("Quit:" + uDiskDrive);
 						System.exit(0);
 					}
 				}
