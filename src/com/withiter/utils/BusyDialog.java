@@ -61,7 +61,7 @@ public class BusyDialog {
 		// create a busylabel
 		final JXBusyLabel busylabel1 = createSimpleBusyLabel();
 		busylabel1.setBusy(true);
-		final JXLabel label = createLabel("正在操作，请稍等...");
+		final JXLabel label = createLabel("正在操作，请务必等待操作完成...");
 
 		// panel.setAlpha(0.7f);
 		panel.add(label, BorderLayout.NORTH);

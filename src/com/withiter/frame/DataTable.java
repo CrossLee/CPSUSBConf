@@ -33,14 +33,14 @@ public class DataTable extends JTable {
 				return Object.class;
 			}
 		});
-		setRowHeight(30);
+		setRowHeight(40);
 		setGridColor(Color.GRAY);
 		setShowHorizontalLines(true);
 		setShowVerticalLines(true);
 		setOpaque(false);
 		setRowSorter(new TableRowSorter<TableModel>(getModel()));
 		setFont(ConfigDao.instance().getConfig().getFont());
-		// setBorder(new LineBorder(Color.BLACK));
+		setAutoResizeMode(AUTO_RESIZE_ALL_COLUMNS);
 	}
 
 	@Override

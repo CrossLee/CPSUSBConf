@@ -27,8 +27,12 @@ public class CopyWorker implements Runnable {
 
 	public void run() {
 		this.doWork();
+	}
+
+	private void doWork() {
+		System.out.println("CopyWorker start to work!");
+		FileReaderUtils.copy(this.src, this.des);
 		long start = System.currentTimeMillis();
-		System.out.println(this.name + " task finished!");
 		this.downLatch.countDown();
 		String name = des.getName();
 		String ext = name.substring(name.lastIndexOf("."), name.length());
@@ -47,23 +51,23 @@ public class CopyWorker implements Runnable {
 		try {
 			f.createNewFile();
 			VideoDao.instance().writeToIniFile();
+			long end = System.currentTimeMillis();
+			long period = end - start;
+			System.out.println("Copying file cost time in millis : " + period);
+			if(period < 3000){
+				try {
+//					TimeUnit.SECONDS.sleep(2);
+					Thread.sleep(2000);
+					System.out.println("Sleeping 2 seconds");
+				} catch (InterruptedException ie) {
+					ie.printStackTrace();
+				}
+			}
+			System.out.println("Sleep 2 seconds");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		long end = System.currentTimeMillis();
-		long period = end - start;
-		System.out.println("Copying file cost time in millis : " + period);
-		if(period < 3 * 1000){
-			try {
-				TimeUnit.SECONDS.sleep(2);
-			} catch (InterruptedException ie) {
-			}
-		}
-	}
-
-	private void doWork() {
-		System.out.println(this.name + "start to work!");
-		FileReaderUtils.copy(this.src, this.des);
+		System.out.println("CopyWorker task finished!");
 	}
 }

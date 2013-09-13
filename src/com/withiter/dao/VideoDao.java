@@ -24,7 +24,9 @@ public class VideoDao {
 	}
 
 	public void addVideo(Video video) {
-		videoList.add(video);
+		if(videoList.size() < 50){
+			videoList.add(video);
+		}
 	}
 	public void deleteVideo(Video video) {
 		videoList.remove(video);

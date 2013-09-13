@@ -36,15 +36,12 @@ public class MainPanel extends JPanel {
 		mainPanel = this;
 		setOpaque(false);
 		setLayout(new BorderLayout());
-//		setBorder(new LineBorder(Color.BLACK));
 		table = new DataTable(null, null);
 		jscrolPane = new JScrollPane();
-//		jscrolPane.setBorder(new LineBorder(Color.BLACK));
 		jscrolPane.setOpaque(false);
 		jscrolPane.getViewport().setOpaque(false);
 		jscrolPane.setAutoscrolls(true);
 		add(jscrolPane);
-//		showRoomsBookedData();
 		showVideos();
 	}
 

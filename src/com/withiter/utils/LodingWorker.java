@@ -18,8 +18,13 @@ public class LodingWorker implements Runnable {
             this.downLatch.await();  
         } catch (InterruptedException e) {
         }
+        try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
         this.bd.frame.dispose();
-        System.out.println("Loading finished");  
+        System.out.println("LodingWorker finished");  
     }  
   
 }  
