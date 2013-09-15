@@ -33,7 +33,6 @@ public class CopyWorker implements Runnable {
 		System.out.println("CopyWorker start to work!");
 		FileReaderUtils.copy(this.src, this.des);
 		long start = System.currentTimeMillis();
-		this.downLatch.countDown();
 		String name = des.getName();
 		String ext = name.substring(name.lastIndexOf("."), name.length());
 		String path = des.getAbsolutePath();
@@ -68,6 +67,7 @@ public class CopyWorker implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.downLatch.countDown();
 		System.out.println("CopyWorker task finished!");
 	}
 }

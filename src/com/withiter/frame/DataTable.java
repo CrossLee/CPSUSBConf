@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -12,6 +13,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -34,6 +36,9 @@ public class DataTable extends JTable {
 			}
 		});
 		setRowHeight(40);
+		
+
+		
 		setGridColor(Color.GRAY);
 		setShowHorizontalLines(true);
 		setShowVerticalLines(true);
@@ -41,6 +46,7 @@ public class DataTable extends JTable {
 		setRowSorter(new TableRowSorter<TableModel>(getModel()));
 		setFont(ConfigDao.instance().getConfig().getFont());
 		setAutoResizeMode(AUTO_RESIZE_ALL_COLUMNS);
+		
 	}
 
 	@Override
@@ -74,6 +80,9 @@ public class DataTable extends JTable {
 			}
 		}
 		if (c instanceof JComponent) {
+			if(c instanceof JCheckBox){
+				return c;
+			}
 			((JLabel) c).setHorizontalAlignment(JLabel.LEFT);
 			((JComponent) c).setOpaque(false);
 			if (selected) {
@@ -93,6 +102,8 @@ public class DataTable extends JTable {
 	}
 
 	public boolean isCellEditable(int row, int column) {
+		if (column == 0)
+			return true;
 		return false;
 	}
 }

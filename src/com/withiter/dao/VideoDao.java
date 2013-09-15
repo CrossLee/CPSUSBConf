@@ -33,12 +33,14 @@ public class VideoDao {
 	}
 
 	private Object[] formatData(Video video) {
-		Object[] result = new Object[5];
-		result[0] = video.name;
-		result[1] = video.ext;
-		result[2] = video.path;
-		result[3] = video.size;
-		result[4] = video.updateTime;
+		Object[] result = new Object[6];
+//		JCheckBox jcb = new JCheckBox();
+		result[0] = new Boolean(false);
+		result[1] = video.name;
+		result[2] = video.ext;
+		result[3] = video.path;
+		result[4] = video.size;
+		result[5] = video.updateTime;
 		return result;
 	}
 
@@ -73,9 +75,10 @@ public class VideoDao {
 		
 		String videoIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\video.ini";
 		File f = new File(videoIni);
-		if(!f.exists()){
-			f.createNewFile();
+		if(f.exists()){
+			f.deleteOnExit();
 		}
+		f.createNewFile();
 		int sum = this.getvideoList().size();
 		List<String> lines = new ArrayList<String>();
 		lines.add("[video]");
