@@ -104,26 +104,36 @@ public class OptionListener implements ActionListener {
 					if (rValue) {
 						String videoName = (String) table.getValueAt(i, 1);
 						s.add(videoName);
+//						System.out.println("set add video name is: " + videoName);
 					}
-					System.out.println("row number is: " + i
-							+ ", the value is :" + rValue);
+//					System.out.println("row number is: " + i
+//							+ ", the value is :" + rValue);
 					value |= rValue;
 				}
-				System.out.println("the value is: " + value);
+				System.out.println("s.toString():"+s.toString());
+//				System.out.println("the value is: " + value);
 				if (!value) {
 					JOptionPane.showMessageDialog(null, "请至少选择一项删除", "提示",
 							JOptionPane.OK_OPTION);
 				} else {
 					
 					List<Video> vList = VideoDao.instance().getvideoList();
+					List<Video> remainedList = new ArrayList<Video>();
 					List<String> vNeedToDelete = new ArrayList<String>();
 					for(int i = 0; i < vList.size(); i ++){
 						Video v = vList.get(i);
 						if(s.contains(v.name)){
-							vList.remove(v);
 							vNeedToDelete.add(v.path);
+//							VideoDao.instance().deleteVideo(v);
+						}else{
+							remainedList.add(v);
 						}
 					}
+					
+					System.out.println("vNeedToDelete.toString() : "+vNeedToDelete.toString());
+					System.out.println("remainedList.toString(): "+remainedList.toString());
+					
+					VideoDao.videoList = remainedList;
 					
 					BusyDialog bd = new BusyDialog();
 					ExecutorService executor = Executors

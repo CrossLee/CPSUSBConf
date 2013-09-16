@@ -10,7 +10,7 @@ import com.withiter.entity.Video;
 import com.withiter.utils.FileReaderUtils;
 
 public class VideoDao {
-	private static List<Video> videoList;
+	public static List<Video> videoList;
 	private static VideoDao videoDao;
 
 	public static VideoDao instance() {
@@ -34,7 +34,6 @@ public class VideoDao {
 
 	private Object[] formatData(Video video) {
 		Object[] result = new Object[6];
-//		JCheckBox jcb = new JCheckBox();
 		result[0] = new Boolean(false);
 		result[1] = video.name;
 		result[2] = video.ext;
@@ -76,7 +75,7 @@ public class VideoDao {
 		String videoIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\video.ini";
 		File f = new File(videoIni);
 		if(f.exists()){
-			f.deleteOnExit();
+			f.delete();
 		}
 		f.createNewFile();
 		int sum = this.getvideoList().size();

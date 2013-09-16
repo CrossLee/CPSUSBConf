@@ -58,7 +58,7 @@ public class NewsDao {
 		String newsIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\news.ini";
 		File f = new File(newsIni);
 		if(f.exists()){
-			f.deleteOnExit();
+			f.delete();
 		}
 		f.createNewFile();
 		int sum = this.getnewsList().size();

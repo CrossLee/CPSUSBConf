@@ -60,6 +60,7 @@ public class NewsDialog extends JDialog {
 					JOptionPane.showMessageDialog(null, "内容不能超过100个字符", "提示", JOptionPane.OK_OPTION);
 					return;
 				}
+				NewsDialog.instance().dispose();
 				News news = new News(content);
 				NewsDao.instance().getnewsList().add(news);
 				BusyDialog bd = new BusyDialog();
@@ -79,6 +80,7 @@ public class NewsDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				NewsDialog.instance().dispose();
+				NewsDialog.instance().jTextArea.setText("");
 			}
 		});
 

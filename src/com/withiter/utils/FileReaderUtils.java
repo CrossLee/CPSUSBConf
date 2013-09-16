@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
@@ -37,14 +38,29 @@ public class FileReaderUtils {
 	}
 	
 	public static void writeToFile(List<String> lines, File f) throws IOException{
-		FileWriter fw = new FileWriter(f);
-		BufferedWriter bw = new BufferedWriter(fw);
+		// TODO need update here
+		System.out.println("writeToFile function started.");
+//		File f = new File(ff.getAbsolutePath());
+//		f.createNewFile();
+		String encoding = code(f);
+		FileOutputStream fos = new FileOutputStream(f);
+		OutputStreamWriter writer = new OutputStreamWriter(fos,
+				encoding);
+//		FileWriter fw = new FileWriter(f);
+		BufferedWriter bw = new BufferedWriter(writer);
 		for(String s : lines){
-			bw.append(s);
+//			bw.append(s);
+			bw.write(s);
 			bw.newLine();
+			bw.flush();
 		}
 		bw.flush();
+		writer.flush();
+		fos.flush();
 		bw.close();
+		writer.close();
+		fos.close();
+		System.out.println("writeToFile function finished.");
 	}
 
 	public static String code(File f) throws IOException {
@@ -59,6 +75,7 @@ public class FileReaderUtils {
 		if (head[0] == -2 && head[1] == -1)
 			code = "Unicode";
 
+		inputStream.close();
 		return code;
 	}
 
