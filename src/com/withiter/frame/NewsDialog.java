@@ -2,6 +2,9 @@ package com.withiter.frame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,6 +14,9 @@ import javax.swing.JTextArea;
 
 import com.withiter.dao.NewsDao;
 import com.withiter.entity.News;
+import com.withiter.utils.BusyDialog;
+import com.withiter.utils.LodingWorker;
+import com.withiter.utils.NewsWorker;
 
 public class NewsDialog extends JDialog {
 	private static final long serialVersionUID = 1664501901587549323L;
@@ -54,9 +60,19 @@ public class NewsDialog extends JDialog {
 					JOptionPane.showMessageDialog(null, "内容不能超过100个字符", "提示", JOptionPane.OK_OPTION);
 					return;
 				}
-				
 				News news = new News(content);
 				NewsDao.instance().getnewsList().add(news);
+				BusyDialog bd = new BusyDialog();
+				ExecutorService executor = Executors
+						.newCachedThreadPool();
+
+				CountDownLatch latch = new CountDownLatch(1);
+				NewsWorker w1 = new NewsWorker(latch, "NewsWorker");
+				LodingWorker loading = new LodingWorker(latch, bd);
+
+				executor.execute(w1);
+				executor.execute(loading);
+				executor.shutdown();
 			}
 		});
 		cancel.addActionListener(new ActionListener(){
@@ -73,6 +89,7 @@ public class NewsDialog extends JDialog {
 	}
 
 	public void open() {
+		jTextArea.setText("");
 		setVisible(true);
 	}
 }

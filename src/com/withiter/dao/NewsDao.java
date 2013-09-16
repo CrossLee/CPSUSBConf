@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.withiter.entity.News;
 import com.withiter.entity.USBConfig;
-import com.withiter.entity.Video;
 import com.withiter.utils.FileReaderUtils;
 
 public class NewsDao {
@@ -33,12 +32,8 @@ public class NewsDao {
 
 	private Object[] formatData(News News) {
 		Object[] result = new Object[5];
-//		result[0] = News.index;
 		result[0] = new Boolean(false);
 		result[1] = News.content;
-//		result[2] = News.path;
-//		result[3] = News.size;
-//		result[4] = News.updateTime;
 		return result;
 	}
 

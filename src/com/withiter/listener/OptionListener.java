@@ -55,6 +55,12 @@ public class OptionListener implements ActionListener {
 		// check the current page
 		if (MainFrame.CURRENT_PAGE.equals("video")) {
 			if (e.getSource() == jbtnAdd) {
+				if(VideoDao.instance().getvideoList().size() >= 50){
+					JOptionPane.showMessageDialog(null,
+							"最多可添加50个视频，请删除一些视频再进行添加操作", "提示",
+							JOptionPane.OK_OPTION);
+					return;
+				}
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setFileFilter(new VideoFilter());
 				int i = fileChooser.showOpenDialog(null);
