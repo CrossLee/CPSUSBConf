@@ -118,10 +118,12 @@ public class MainPanel extends JPanel {
 	public void showData(Object[][] data, Object[] head) {
 		table.removeAll();
 		table = new DataTable(data, head);
-		TableColumn firsetColumn = table.getColumnModel().getColumn(0);
-		firsetColumn.setPreferredWidth(60);
-		firsetColumn.setMaxWidth(100);
-		firsetColumn.setMinWidth(60);
+		if(head[0].toString().equalsIgnoreCase("选择")){
+			TableColumn firsetColumn = table.getColumnModel().getColumn(0);
+			firsetColumn.setPreferredWidth(60);
+			firsetColumn.setMaxWidth(100);
+			firsetColumn.setMinWidth(60);
+		}
 		jscrolPane.setViewportView(table);
 	}
 

@@ -3,7 +3,6 @@ package com.withiter.listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -23,10 +22,10 @@ import com.withiter.entity.Video;
 import com.withiter.frame.DataTable;
 import com.withiter.frame.MainFrame;
 import com.withiter.frame.MainPanel;
+import com.withiter.frame.NewsDialog;
 import com.withiter.utils.BusyDialog;
 import com.withiter.utils.CopyWorker;
 import com.withiter.utils.DeleteWorker;
-import com.withiter.utils.FileReaderUtils;
 import com.withiter.utils.LodingWorker;
 
 public class OptionListener implements ActionListener {
@@ -117,7 +116,6 @@ public class OptionListener implements ActionListener {
 						if(s.contains(v.name)){
 							vList.remove(v);
 							vNeedToDelete.add(v.path);
-//							FileReaderUtils.del(v.path);
 						}
 					}
 					
@@ -133,7 +131,6 @@ public class OptionListener implements ActionListener {
 					executor.execute(w1);
 					executor.execute(loading);
 					executor.shutdown();
-					
 				}
 				MainPanel.instance().refresh();
 			} else if (e.getSource() == jbtRefresh) {
@@ -142,8 +139,10 @@ public class OptionListener implements ActionListener {
 				System.exit(0);
 			}
 		}
+		
 		if (MainFrame.CURRENT_PAGE.equals("news")) {
 			if (e.getSource() == jbtnAdd) {
+				NewsDialog.instance().open();
 				// BookRoomDialog.instance().open();
 			} else if (e.getSource() == jbtnDel) {
 				// TakeRoomDialog.instance().open();

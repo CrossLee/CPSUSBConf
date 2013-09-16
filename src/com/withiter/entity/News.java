@@ -10,6 +10,10 @@ public class News {
 		this.index = index;
 		this.content = content;
 	}
+	public News(String content) {
+		super();
+		this.content = content;
+	}
 	
 	public static void main(String[] args){
 		String s = "a=b";

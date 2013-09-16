@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import com.withiter.dao.VideoDao;
 import com.withiter.entity.USBConfig;

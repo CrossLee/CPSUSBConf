@@ -33,8 +33,8 @@ public class InfoUtils {
 		System.out.println("start to check USB's status。。。");
 		
 		// TODO update here
-		String rootPath = "I:\\";
-		USBConfig.drivePath = "I:\\";
+		String rootPath = "H:\\";
+		USBConfig.drivePath = "H:\\";
 //		String rootPath = USBConfig.drivePath;
 		if(rootPath == null){
 			JOptionPane.showMessageDialog(null, "未检测到U盘，请在登陆前插入U盘。点击确定退出系统", "提示",
