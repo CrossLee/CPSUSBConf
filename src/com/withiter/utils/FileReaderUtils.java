@@ -37,20 +37,14 @@ public class FileReaderUtils {
 
 	public static void writeToFile(List<String> lines, File f)
 			throws IOException {
-		// TODO need update here
 		System.out.println("writeToFile function started.");
-		// File f = new File(ff.getAbsolutePath());
-		// f.createNewFile();
 		String encoding = code(f);
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter writer = new OutputStreamWriter(fos, encoding);
-		// FileWriter fw = new FileWriter(f);
 		BufferedWriter bw = new BufferedWriter(writer);
 		for (String s : lines) {
-			// bw.append(s);
 			bw.write(s);
 			bw.newLine();
-			// bw.flush();
 		}
 		bw.flush();
 		writer.flush();
