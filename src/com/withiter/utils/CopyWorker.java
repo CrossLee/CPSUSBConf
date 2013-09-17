@@ -45,7 +45,9 @@ public class CopyWorker implements Runnable {
 		// update ini file
 		String videoIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\video.ini";
 		File f = new File(videoIni);
-		f.deleteOnExit();
+		if(f.exists()){
+			f.delete();
+		}
 		try {
 			f.createNewFile();
 			VideoDao.instance().writeToIniFile();

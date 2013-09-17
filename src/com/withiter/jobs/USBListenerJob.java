@@ -35,12 +35,10 @@ public class USBListenerJob implements Runnable {
 					if (!sign) {
 						fileVector.add(tempFile[i]);
 						uDiskDrive = tempFile[i].toString();
-						JOptionPane.showMessageDialog(null, "检测到U盘插入"+uDiskDrive, "提示",
-								JOptionPane.OK_OPTION);
+						JOptionPane.showMessageDialog(null, "检测到U盘插入"
+								+ uDiskDrive, "提示", JOptionPane.OK_OPTION);
 						System.out.println("Enter:" + uDiskDrive);
 						USBConfig.drivePath = uDiskDrive;
-						// load information from usb
-//						new FindFileThread(fileVector).start();// find files thread
 					}
 				}
 				roots = File.listRoots();// update roots
@@ -53,7 +51,8 @@ public class USBListenerJob implements Runnable {
 						}
 					}
 					if (sign == false) {
-						JOptionPane.showMessageDialog(null, "检测到U盘移除"+uDiskDrive+"，点击确定退出系统", "提示",
+						JOptionPane.showMessageDialog(null, "检测到U盘移除"
+								+ uDiskDrive + "，点击确定退出系统", "提示",
 								JOptionPane.OK_OPTION);
 						System.out.println("Quit:" + uDiskDrive);
 						System.exit(0);
@@ -68,9 +67,5 @@ public class USBListenerJob implements Runnable {
 						Level.SEVERE, null, ex);
 			}
 		}
-	}
-
-	public static void main(String args[]) {
-		new Thread(new USBListenerJob()).start();
 	}
 }

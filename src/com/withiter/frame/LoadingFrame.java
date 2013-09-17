@@ -19,9 +19,7 @@ import com.withiter.entity.USBConfig;
 import com.withiter.utils.OSUtils;
 
 public class LoadingFrame extends JFrame implements Runnable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -8236850107130802140L;
 	private static LoadingFrame loadingFrame;
 
@@ -33,14 +31,13 @@ public class LoadingFrame extends JFrame implements Runnable {
 
 	private void initConf() throws IOException {
 		File f = null;
-		if(OSUtils.isMac()){
+		if (OSUtils.isMac()) {
 			f = new File("/Users/user/USBConfs");
 		}
-		if(OSUtils.isWin()){
+		if (OSUtils.isWin()) {
 			f = new File("C:/USBConfs");
 		}
-		
-		
+
 		if (!f.exists()) {
 			System.out.println("C:/USBConfs does not exist");
 			f.createNewFile();
@@ -73,12 +70,13 @@ public class LoadingFrame extends JFrame implements Runnable {
 			int videoMaxNumber = Integer
 					.parseInt(video_max_number.split("=")[1]);
 			int newsMaxChars = Integer.parseInt(news_max_chars.split("=")[1]);
-			USBConfig.initParams(exts, videoNewFolder,initNewFolder, videoPath, videoMaxNumber, newsMaxChars);
+			USBConfig.initParams(exts, videoNewFolder, initNewFolder,
+					videoPath, videoMaxNumber, newsMaxChars);
 		} else {
 			System.out.println("C:/USBConfs does exist");
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String line = null;
-			
+
 			Set<String> exts = new HashSet<String>();
 			String videoNewFolder = "";
 			String initNewFolder = "";
@@ -86,36 +84,35 @@ public class LoadingFrame extends JFrame implements Runnable {
 			int videoMaxNumber = 50;
 			int newsMaxChars = 100;
 			while ((line = br.readLine()) != null) {
-				if(line.startsWith("ext")){
+				if (line.startsWith("ext")) {
 					exts.addAll(Arrays.asList(line.split("=")[1].split(" ")));
 				}
-				if(line.startsWith("video_new_folder")){
+				if (line.startsWith("video_new_folder")) {
 					videoNewFolder = line.split("=")[1];
 				}
-				if(line.startsWith("init_new_folder")){
+				if (line.startsWith("init_new_folder")) {
 					initNewFolder = line.split("=")[1];
 				}
-				if(line.startsWith("video_path")){
+				if (line.startsWith("video_path")) {
 					videoPath = line.split("=")[1];
 				}
-				if(line.startsWith("video_max_number")){
-					videoMaxNumber = Integer
-							.parseInt(line.split("=")[1]);
+				if (line.startsWith("video_max_number")) {
+					videoMaxNumber = Integer.parseInt(line.split("=")[1]);
 				}
-				if(line.startsWith("newsMaxChars")){
-					newsMaxChars = Integer
-							.parseInt(line.split("=")[1]);
+				if (line.startsWith("newsMaxChars")) {
+					newsMaxChars = Integer.parseInt(line.split("=")[1]);
 				}
 			}
 			br.close();
-			USBConfig.initParams(exts, videoNewFolder, initNewFolder, videoPath, videoMaxNumber, newsMaxChars);
+			USBConfig.initParams(exts, videoNewFolder, initNewFolder,
+					videoPath, videoMaxNumber, newsMaxChars);
 		}
-		
+
 		USBConfig.description();
 	}
 
 	public LoadingFrame() {
-		super("CPS USB Conf");
+		super("U盘系统加载中...");
 		setSize(230, 150);
 		loadingFrame = this;
 		setUndecorated(true);
@@ -133,12 +130,6 @@ public class LoadingFrame extends JFrame implements Runnable {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
 	}
 
 	@Override

@@ -34,25 +34,26 @@ public class FileReaderUtils {
 			list.add(line);
 		}
 		br.close();
+		read.close();
 		return list;
 	}
-	
-	public static void writeToFile(List<String> lines, File f) throws IOException{
+
+	public static void writeToFile(List<String> lines, File f)
+			throws IOException {
 		// TODO need update here
 		System.out.println("writeToFile function started.");
-//		File f = new File(ff.getAbsolutePath());
-//		f.createNewFile();
+		// File f = new File(ff.getAbsolutePath());
+		// f.createNewFile();
 		String encoding = code(f);
 		FileOutputStream fos = new FileOutputStream(f);
-		OutputStreamWriter writer = new OutputStreamWriter(fos,
-				encoding);
-//		FileWriter fw = new FileWriter(f);
+		OutputStreamWriter writer = new OutputStreamWriter(fos, encoding);
+		// FileWriter fw = new FileWriter(f);
 		BufferedWriter bw = new BufferedWriter(writer);
-		for(String s : lines){
-//			bw.append(s);
+		for (String s : lines) {
+			// bw.append(s);
 			bw.write(s);
 			bw.newLine();
-			bw.flush();
+//			bw.flush();
 		}
 		bw.flush();
 		writer.flush();
@@ -104,10 +105,13 @@ public class FileReaderUtils {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (null != in)
-					in.close();
-				if (null != out)
+				if (null != out) {
+					out.flush();
 					out.close();
+				}
+				if (null != in) {
+					in.close();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

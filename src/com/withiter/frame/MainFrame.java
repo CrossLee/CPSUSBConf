@@ -35,7 +35,7 @@ public class MainFrame extends JFrame implements Runnable {
 		setTitle("电子站牌u盘系统");
 		mainFrame = this;
 		setUndecorated(true);
-//		setAlwaysOnTop(true);
+		// setAlwaysOnTop(true);
 
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension screenSize = tk.getScreenSize();
@@ -69,8 +69,8 @@ public class MainFrame extends JFrame implements Runnable {
 		LoginFrame.getLoginDialog().setVisible(false);
 
 		// load datas from usb
-		 loadDatas();
-		 
+		loadDatas();
+
 		// right bottom panel
 		Container container = getContentPane();
 		container.add(new MainPanel(), BorderLayout.CENTER);
@@ -78,8 +78,8 @@ public class MainFrame extends JFrame implements Runnable {
 
 	// load all information from usb
 	private void loadDatas() {
-		InfoUtils.loadVideoInfo();
 		try {
+			InfoUtils.loadVideoInfo();
 			InfoUtils.loadNewsInfo();
 			InfoUtils.loadTemperatureInfo();
 			InfoUtils.loadLogInfo();

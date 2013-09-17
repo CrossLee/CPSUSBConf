@@ -26,11 +26,11 @@ public class NewsWorker implements Runnable {
 		long start = System.currentTimeMillis();
 		
 		// update ini file
-		String videoIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\news.ini";
-		File f = new File(videoIni);
-		f.deleteOnExit();
+//		String videoIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\news.ini";
+//		File f = new File(videoIni);
+//		f.delete();
 		try {
-			f.createNewFile();
+//			f.createNewFile();
 			NewsDao.instance().writeToIniFile();
 			long end = System.currentTimeMillis();
 			long period = end - start;
