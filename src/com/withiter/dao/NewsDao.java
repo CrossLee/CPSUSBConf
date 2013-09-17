@@ -10,7 +10,7 @@ import com.withiter.entity.USBConfig;
 import com.withiter.utils.FileReaderUtils;
 
 public class NewsDao {
-	private static List<News> newsList;
+	public static List<News> newsList;
 	private static NewsDao newsDao;
 
 	public static NewsDao instance() {

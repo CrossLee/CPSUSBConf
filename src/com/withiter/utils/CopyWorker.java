@@ -54,7 +54,7 @@ public class CopyWorker implements Runnable {
 			long end = System.currentTimeMillis();
 			long period = end - start;
 			System.out.println("Copying file cost time in millis : " + period);
-			if(period < 3000){
+			if(period < 2000){
 				try {
 //					TimeUnit.SECONDS.sleep(2);
 					Thread.sleep(2000);

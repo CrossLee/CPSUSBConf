@@ -16,7 +16,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
+import com.withiter.dao.NewsDao;
 import com.withiter.dao.VideoDao;
+import com.withiter.entity.News;
 import com.withiter.entity.USBConfig;
 import com.withiter.entity.Video;
 import com.withiter.frame.DataTable;
@@ -27,6 +29,7 @@ import com.withiter.utils.BusyDialog;
 import com.withiter.utils.CopyWorker;
 import com.withiter.utils.DeleteWorker;
 import com.withiter.utils.LodingWorker;
+import com.withiter.utils.NewsWorker;
 
 public class OptionListener implements ActionListener {
 	JButton jbtnAdd;
@@ -104,14 +107,10 @@ public class OptionListener implements ActionListener {
 					if (rValue) {
 						String videoName = (String) table.getValueAt(i, 1);
 						s.add(videoName);
-//						System.out.println("set add video name is: " + videoName);
 					}
-//					System.out.println("row number is: " + i
-//							+ ", the value is :" + rValue);
 					value |= rValue;
 				}
 				System.out.println("s.toString():"+s.toString());
-//				System.out.println("the value is: " + value);
 				if (!value) {
 					JOptionPane.showMessageDialog(null, "请至少选择一项删除", "提示",
 							JOptionPane.OK_OPTION);
@@ -124,7 +123,6 @@ public class OptionListener implements ActionListener {
 						Video v = vList.get(i);
 						if(s.contains(v.name)){
 							vNeedToDelete.add(v.path);
-//							VideoDao.instance().deleteVideo(v);
 						}else{
 							remainedList.add(v);
 						}
@@ -159,9 +157,56 @@ public class OptionListener implements ActionListener {
 		if (MainFrame.CURRENT_PAGE.equals("news")) {
 			if (e.getSource() == jbtnAdd) {
 				NewsDialog.instance().open();
-				// BookRoomDialog.instance().open();
 			} else if (e.getSource() == jbtnDel) {
-				// TakeRoomDialog.instance().open();
+				System.out.println("News delete button clicked!");
+				DataTable table = MainPanel.instance().getTable();
+				int rows = table.getRowCount();
+				System.out.println(rows);
+				boolean value = false;
+				List<String> s = new ArrayList<String>();
+				for (int i = 0; i < rows; i++) {
+					boolean rValue = (Boolean) table.getValueAt(i, 0);
+					if (rValue) {
+						String newsName = (String) table.getValueAt(i, 1);
+						s.add(newsName);
+					}
+					value |= rValue;
+				}
+				System.out.println("s.toString():"+s.toString());
+				if (!value) {
+					JOptionPane.showMessageDialog(null, "请至少选择一项删除", "提示",
+							JOptionPane.OK_OPTION);
+				} else {
+					List<News> vList = NewsDao.instance().getnewsList();
+					List<News> remainedList = new ArrayList<News>();
+					List<String> vNeedToDelete = new ArrayList<String>();
+					for(int i = 0; i < vList.size(); i ++){
+						News v = vList.get(i);
+						if(s.contains(v.content)){
+							vNeedToDelete.add(v.content);
+						}else{
+							remainedList.add(v);
+						}
+					}
+					
+					System.out.println("vNeedToDelete.toString() : "+vNeedToDelete.toString());
+					System.out.println("remainedList.toString(): "+remainedList.toString());
+					
+					NewsDao.newsList = remainedList;
+					
+					BusyDialog bd = new BusyDialog();
+					ExecutorService executor = Executors
+							.newCachedThreadPool();
+
+					CountDownLatch latch = new CountDownLatch(1);
+					NewsWorker w1 = new NewsWorker(latch, "NewsWorker");
+					LodingWorker loading = new LodingWorker(latch, bd);
+
+					executor.execute(w1);
+					executor.execute(loading);
+					executor.shutdown();
+				}
+				MainPanel.instance().refresh();
 			} else if (e.getSource() == jbtRefresh) {
 				MainPanel.instance().refresh();
 			} else if (e.getSource() == jbtExit) {

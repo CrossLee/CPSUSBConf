@@ -35,9 +35,9 @@ public class NewsWorker implements Runnable {
 			long end = System.currentTimeMillis();
 			long period = end - start;
 			System.out.println("NewsWorker cost time in millis : " + period);
-			if(period < 2000){
+			if(period < 1000){
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(1000);
 					System.out.println("Sleeping 2 seconds");
 				} catch (InterruptedException ie) {
 					ie.printStackTrace();
