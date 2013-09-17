@@ -20,18 +20,10 @@ import com.withiter.entity.Video;
 
 public class InfoUtils {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 	private static void checkUSB() {
 		System.out.println("start to check USB's status。。。");
 
-		// TODO update here
+		// TODO update drive path here
 		String rootPath = "H:\\";
 		USBConfig.drivePath = "H:\\";
 		// String rootPath = USBConfig.drivePath;

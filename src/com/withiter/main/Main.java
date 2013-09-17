@@ -15,9 +15,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		new Thread(new LoadingFrame()).start();
-		
-		// TODO remove below comments
-//		new Thread(new USBListenerJob()).start();
+
+		new Thread(new USBListenerJob()).start();
 		Font font = ConfigDao.instance().getConfig().getFont();
 		Enumeration<Object> keys = UIManager.getDefaults().keys();
 		while (keys.hasMoreElements()) {
@@ -28,7 +27,8 @@ public class Main {
 		}
 		new Thread(new LoginFrame()).start();
 		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+			UIManager
+					.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {
 		}
 		new Thread(new MainFrame()).start();

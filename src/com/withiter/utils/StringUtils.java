@@ -38,7 +38,6 @@ public class StringUtils {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		String s = getSuffixWithoutDot("asdfas.aa");
 		System.out.println(s);
 	}
