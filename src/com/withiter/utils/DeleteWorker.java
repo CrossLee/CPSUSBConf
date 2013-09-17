@@ -49,4 +49,8 @@ public class DeleteWorker implements Runnable {
 		this.downLatch.countDown();
 		System.out.println("DeleteWorker task finished!");
 	}
+
+	public String toString() {
+		return this.name;
+	}
 }

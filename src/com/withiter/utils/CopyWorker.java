@@ -41,11 +41,12 @@ public class CopyWorker implements Runnable {
 		Video v = new Video(name, ext, path, size, updateDate);
 		VideoDao.instance().addVideo(v);
 		MainPanel.instance().refresh();
-		
+
 		// update ini file
-		String videoIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\video.ini";
+		String videoIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER
+				+ "\\video.ini";
 		File f = new File(videoIni);
-		if(f.exists()){
+		if (f.exists()) {
 			f.delete();
 		}
 		try {
@@ -54,9 +55,8 @@ public class CopyWorker implements Runnable {
 			long end = System.currentTimeMillis();
 			long period = end - start;
 			System.out.println("Copying file cost time in millis : " + period);
-			if(period < 2000){
+			if (period < 2000) {
 				try {
-//					TimeUnit.SECONDS.sleep(2);
 					Thread.sleep(2000);
 					System.out.println("Sleeping 2 seconds");
 				} catch (InterruptedException ie) {
@@ -65,10 +65,13 @@ public class CopyWorker implements Runnable {
 			}
 			System.out.println("Sleep 2 seconds");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.downLatch.countDown();
 		System.out.println("CopyWorker task finished!");
+	}
+
+	public String toString() {
+		return this.name;
 	}
 }

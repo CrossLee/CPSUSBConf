@@ -4,24 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 
-import com.withiter.dao.VideoDao;
-import com.withiter.entity.USBConfig;
 import com.withiter.frame.DataTable;
 import com.withiter.frame.MainPanel;
-import com.withiter.utils.BusyDialog;
-import com.withiter.utils.CopyWorker;
-import com.withiter.utils.LodingWorker;
 
 public class TableListener extends MouseAdapter implements ActionListener {
 	private DataTable table;
