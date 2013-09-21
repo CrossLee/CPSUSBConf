@@ -65,16 +65,16 @@ public class MainPanel extends JPanel {
 		Object[] head = {"选择", "视频名称", "后缀类型", "文件路径", "文件大小（M）", "添加时间" };
 		VideoDao vd = VideoDao.instance();
 		showData(vd.getVideosData(), head);
-		JMenuItem add = new JMenuItem("添加视频");
-		JMenuItem delete = new JMenuItem("删除视频");
-		JPopupMenu menu = new JPopupMenu();
-		menu.add(add);
-		menu.add(delete);
-		TableListener tableListener = new TableListener(menu);
-		table.addMouseListener(tableListener);
-		table.addMouseMotionListener(tableListener);
-		add.addActionListener(tableListener);
-		delete.addActionListener(tableListener);
+//		JMenuItem add = new JMenuItem("添加视频");
+//		JMenuItem delete = new JMenuItem("删除视频");
+//		JPopupMenu menu = new JPopupMenu();
+//		menu.add(add);
+//		menu.add(delete);
+//		TableListener tableListener = new TableListener(menu);
+//		table.addMouseListener(tableListener);
+//		table.addMouseMotionListener(tableListener);
+//		add.addActionListener(tableListener);
+//		delete.addActionListener(tableListener);
 	}
 
 	public void showNews() {
@@ -84,14 +84,14 @@ public class MainPanel extends JPanel {
 		showData(nd.getNewssData(), head);
 		JMenuItem add = new JMenuItem("添加新闻");
 		JMenuItem delete = new JMenuItem("删除新闻");
-		JPopupMenu menu = new JPopupMenu();
-		menu.add(add);
-		menu.add(delete);
-		TableListener tableListener = new TableListener(menu);
-		table.addMouseListener(tableListener);
-		table.addMouseMotionListener(tableListener);
-		add.addActionListener(tableListener);
-		delete.addActionListener(tableListener);
+//		JPopupMenu menu = new JPopupMenu();
+//		menu.add(add);
+//		menu.add(delete);
+//		TableListener tableListener = new TableListener(menu);
+//		table.addMouseListener(tableListener);
+//		table.addMouseMotionListener(tableListener);
+//		add.addActionListener(tableListener);
+//		delete.addActionListener(tableListener);
 	}
 
 	public void showTemperature() {
@@ -99,13 +99,13 @@ public class MainPanel extends JPanel {
 		Object[] head = { "温度信息" };
 		TemperatureDao td = TemperatureDao.instance();
 		showData(td.getTemperaturesData(), head);
-		JMenuItem add = new JMenuItem("编辑温度信息");
-		JPopupMenu menu = new JPopupMenu();
-		menu.add(add);
-		TableListener tableListener = new TableListener(menu);
-		table.addMouseListener(tableListener);
-		table.addMouseMotionListener(tableListener);
-		add.addActionListener(tableListener);
+//		JMenuItem add = new JMenuItem("编辑温度信息");
+//		JPopupMenu menu = new JPopupMenu();
+//		menu.add(add);
+//		TableListener tableListener = new TableListener(menu);
+//		table.addMouseListener(tableListener);
+//		table.addMouseMotionListener(tableListener);
+//		add.addActionListener(tableListener);
 	}
 
 	public void showLog() {
