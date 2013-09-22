@@ -1,17 +1,16 @@
 package com.withiter.utils;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,33 +79,49 @@ public class FileReaderUtils {
 	}
 
 	// 文件拷贝
-	public static void copy(File src, File dst) {
-		System.out.println(src.getAbsolutePath());
-		System.out.println(dst.getAbsolutePath());
-		InputStream in = null;
-		OutputStream out = null;
-		try {
-			in = new BufferedInputStream(new FileInputStream(src), BUFFER_SIZE);
-			out = new BufferedOutputStream(new FileOutputStream(dst),
-					BUFFER_SIZE);
-			byte[] buffer = new byte[BUFFER_SIZE];
-			while (in.read(buffer) > 0)
-				out.write(buffer);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (null != out) {
-					out.flush();
-					out.close();
-				}
-				if (null != in) {
-					in.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+	public static void copy(File srcFile, File destDir) {
+		System.out.println(srcFile.getAbsolutePath());
+		System.out.println(destDir.getAbsolutePath());
+		long copySizes = 0;
+		
+		try {  
+            FileChannel fcin = new FileInputStream(srcFile).getChannel();  
+            FileChannel fcout = new FileOutputStream(destDir).getChannel();  
+            long size = fcin.size();  
+            fcin.transferTo(0, fcin.size(), fcout);  
+            fcin.close();  
+            fcout.close();  
+            copySizes = size;  
+        } catch (FileNotFoundException e) {  
+            e.printStackTrace();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        }  
+		
+//		InputStream in = null;
+//		OutputStream out = null;
+//		try {
+//			in = new BufferedInputStream(new FileInputStream(src), BUFFER_SIZE);
+//			out = new BufferedOutputStream(new FileOutputStream(dst),
+//					BUFFER_SIZE);
+//			byte[] buffer = new byte[BUFFER_SIZE];
+//			while (in.read(buffer) > 0)
+//				out.write(buffer);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (null != out) {
+//					out.flush();
+//					out.close();
+//				}
+//				if (null != in) {
+//					in.close();
+//				}
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
 	}
 
 	// 获取文件后缀名
@@ -122,11 +137,15 @@ public class FileReaderUtils {
 		// }
 
 		System.out.println(FileReaderUtils.code(new File(
-				"C:\\Users\\server\\Desktop\\CPSUSB\\需求说明\\NEWS.INI")));
+				"C:\\Users\\server\\CPSUSBConf\\src\\files\\logfile.txt")));
 		System.out.println(FileReaderUtils.code(new File(
-				"C:\\Users\\server\\Desktop\\CPSUSB\\需求说明\\logfile.txt")));
+				"C:\\Users\\server\\CPSUSBConf\\src\\files\\news.ini")));
 		System.out.println(FileReaderUtils.code(new File(
-				"C:\\Users\\server\\Desktop\\CPSUSB\\需求说明\\temperature.ini")));
+				"C:\\Users\\server\\CPSUSBConf\\src\\files\\temperature.ini")));
+		System.out.println(FileReaderUtils.code(new File(
+				"C:\\Users\\server\\CPSUSBConf\\src\\files\\video.ini")));
+		System.out.println(FileReaderUtils.code(new File(
+				"I:\\ininew\\news.ini")));
 	}
 
 }

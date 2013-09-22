@@ -43,7 +43,7 @@ public class LoadingFrame extends JFrame implements Runnable {
 			f.createNewFile();
 			String ext = "ext=wmv avi rm rmvb mpg mp4";
 			String video_new_folder = "video_new_folder=videonew";
-			String init_new_folder = "init_new_folder=ininew";
+			String ini_new_folder = "ini_new_folder=ininew";
 			String video_path = "video_path=\\Storage card\\videodata\\";
 			String video_max_number = "video_max_number=50";
 			String news_max_chars = "news_max_chars=100";
@@ -53,7 +53,7 @@ public class LoadingFrame extends JFrame implements Runnable {
 			bw.newLine();
 			bw.append(video_new_folder);
 			bw.newLine();
-			bw.append(init_new_folder);
+			bw.append(ini_new_folder);
 			bw.newLine();
 			bw.append(video_path);
 			bw.newLine();
@@ -65,12 +65,12 @@ public class LoadingFrame extends JFrame implements Runnable {
 			Set<String> exts = new HashSet<String>();
 			exts.addAll(Arrays.asList(ext.split("=")[1].split(" ")));
 			String videoNewFolder = video_new_folder.split("=")[1];
-			String initNewFolder = init_new_folder.split("=")[1];
+			String iniNewFolder = ini_new_folder.split("=")[1];
 			String videoPath = video_path.split("=")[1];
 			int videoMaxNumber = Integer
 					.parseInt(video_max_number.split("=")[1]);
 			int newsMaxChars = Integer.parseInt(news_max_chars.split("=")[1]);
-			USBConfig.initParams(exts, videoNewFolder, initNewFolder,
+			USBConfig.initParams(exts, videoNewFolder, iniNewFolder,
 					videoPath, videoMaxNumber, newsMaxChars);
 		} else {
 			System.out.println("C:/USBConfs does exist");
@@ -90,7 +90,7 @@ public class LoadingFrame extends JFrame implements Runnable {
 				if (line.startsWith("video_new_folder")) {
 					videoNewFolder = line.split("=")[1];
 				}
-				if (line.startsWith("init_new_folder")) {
+				if (line.startsWith("ini_new_folder")) {
 					initNewFolder = line.split("=")[1];
 				}
 				if (line.startsWith("video_path")) {

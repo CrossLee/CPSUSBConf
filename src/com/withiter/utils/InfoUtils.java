@@ -75,7 +75,7 @@ public class InfoUtils {
 		File temperatureIni = new File(temperatureiniFile);
 		if (!temperatureIni.exists()) {
 			System.out.println(temperatureiniFile + " file does not exist!");
-			File f = new File("/files/temperature.ini");
+			File f = new File(InfoUtils.class.getClass().getResource("/").getPath()+"/files/temperature.ini");
 			FileReaderUtils.copy(f, temperatureIni);
 		}
 
@@ -99,12 +99,17 @@ public class InfoUtils {
 		System.out.println("start to load news info from usb");
 		String rootPath = USBConfig.drivePath;
 		String initnewFolder = rootPath + USBConfig.INI_NEW_FOLDER + "\\";
+		File folder = new File(initnewFolder);
+		if(!folder.exists()){
+			folder.mkdirs();
+		}
+		
 		String newsiniFile = initnewFolder + "news.ini";
 
 		File newsIni = new File(newsiniFile);
 		if (!newsIni.exists()) {
 			System.out.println(newsiniFile + " file does not exist!");
-			File f = new File("/files/news.ini");
+			File f = new File(InfoUtils.class.getClass().getResource("/").getPath()+"/files/news.ini");
 			FileReaderUtils.copy(f, newsIni);
 		}
 
@@ -134,7 +139,7 @@ public class InfoUtils {
 		File logtext = new File(logfile);
 		if (!logtext.exists()) {
 			System.out.println(logtext + " file does not exist!");
-			File f = new File("/files/logfile.ini");
+			File f = new File(InfoUtils.class.getClass().getResource("/").getPath()+"/files/logfile.txt");
 			FileReaderUtils.copy(f, logtext);
 		}
 		List<String> list = FileReaderUtils.readFile(logtext);
@@ -199,5 +204,10 @@ public class InfoUtils {
 				LogDao.instance().addLog(log);
 			}
 		}
+	}
+	
+	public static void main(String[] args) {
+		String s = InfoUtils.class.getClass().getResource("/files/news.ini").getPath();
+		System.out.println(s);
 	}
 }
