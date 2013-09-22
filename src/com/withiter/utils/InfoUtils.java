@@ -75,7 +75,12 @@ public class InfoUtils {
 		File temperatureIni = new File(temperatureiniFile);
 		if (!temperatureIni.exists()) {
 			System.out.println(temperatureiniFile + " file does not exist!");
-			File f = new File(InfoUtils.class.getClass().getResource("/").getPath()+"/files/temperature.ini");
+//			File f = new File(new File("").getAbsolutePath()+"/files/temperature.ini");
+			File f = new File(InfoUtils.class.getResource("/").getPath()+"temperature.ini");
+			// TODO develop model
+//			if(!f.exists()){
+//				f = new File(InfoUtils.class.getClass().getResource("/files/temperature.ini").getPath());
+//			}
 			FileReaderUtils.copy(f, temperatureIni);
 		}
 
@@ -109,7 +114,24 @@ public class InfoUtils {
 		File newsIni = new File(newsiniFile);
 		if (!newsIni.exists()) {
 			System.out.println(newsiniFile + " file does not exist!");
-			File f = new File(InfoUtils.class.getClass().getResource("/").getPath()+"/files/news.ini");
+//			File f = new File(new File("").getAbsolutePath()+"/files/news.ini");
+			System.out.println("*************path test**************");
+			System.out.println(InfoUtils.class.getResource("").getPath());
+			System.out.println(InfoUtils.class.getResource("/").getPath());
+			System.out.println(InfoUtils.class.getClassLoader().getResource(""));
+			System.out.println(new File("./files").getAbsolutePath());
+			System.out.println(new File("./files").getPath());
+			System.out.println(new File("./files").getPath());
+			System.out.println(new File("").getAbsolutePath());
+			System.out.println(new File("").getCanonicalPath());
+			System.out.println(System.getProperty("java.class.path"));
+			System.out.println("*************path test**************");
+			File f = new File(InfoUtils.class.getResource("/").getPath()+"news.ini");
+			
+			// TODO develop model
+//			if(!f.exists()){
+//				f = new File(InfoUtils.class.getClass().getResource("/files/news.ini").getPath());
+//			}
 			FileReaderUtils.copy(f, newsIni);
 		}
 
@@ -139,7 +161,13 @@ public class InfoUtils {
 		File logtext = new File(logfile);
 		if (!logtext.exists()) {
 			System.out.println(logtext + " file does not exist!");
-			File f = new File(InfoUtils.class.getClass().getResource("/").getPath()+"/files/logfile.txt");
+//			File f = new File(new File("").getAbsolutePath()+"/files/logfile.txt");
+			File f = new File(InfoUtils.class.getResource("/").getPath()+"logfile.txt");
+			
+			// TODO develop model
+//			if(!f.exists()){
+//				f = new File(InfoUtils.class.getClass().getResource("/files/logfile.txt").getPath());
+//			}
 			FileReaderUtils.copy(f, logtext);
 		}
 		List<String> list = FileReaderUtils.readFile(logtext);
@@ -208,6 +236,9 @@ public class InfoUtils {
 	
 	public static void main(String[] args) {
 		String s = InfoUtils.class.getClass().getResource("/files/news.ini").getPath();
+		File f2 = new File("");
+		
+		System.out.println(f2.getAbsolutePath());
 		System.out.println(s);
 	}
 }
