@@ -12,7 +12,7 @@ public class USBConfig {
 	/**
 	 * ininew
 	 */
-	public static String INIT_NEW_FOLDER;
+	public static String INI_NEW_FOLDER;
 	/**
 	 * \Storage card\videodata\
 	 */
@@ -22,11 +22,11 @@ public class USBConfig {
 	
 	public static String drivePath;
 
-	public static void initParams(Set<String> exts, String videoNewFolder, String initNewFolder, String videoPath,
+	public static void initParams(Set<String> exts, String videoNewFolder, String iniNewFolder, String videoPath,
 			int videoMaxNumber, int newsMaxChars) {
 		EXTS = exts;
 		VIDEO_NEW_FOLDER = videoNewFolder;
-		INIT_NEW_FOLDER = initNewFolder;
+		INI_NEW_FOLDER = iniNewFolder;
 		VIDEO_PATH = videoPath;
 		VIDEO_MAX_NUMBER = videoMaxNumber;
 		NEWS_MAX_CHARS = newsMaxChars;
@@ -35,7 +35,7 @@ public class USBConfig {
 	public static void description() {
 		String des = new StringBuilder("").append(EXTS.toString()).append(", ")
 				.append(VIDEO_NEW_FOLDER).append(", ")
-				.append(INIT_NEW_FOLDER).append(", ")
+				.append(INI_NEW_FOLDER).append(", ")
 				.append(VIDEO_PATH).append(", ").append(VIDEO_MAX_NUMBER)
 				.append(", ").append(NEWS_MAX_CHARS).toString();
 		System.out.println(des);

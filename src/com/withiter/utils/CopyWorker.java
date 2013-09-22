@@ -43,7 +43,7 @@ public class CopyWorker implements Runnable {
 		MainPanel.instance().refresh();
 
 		// update ini file
-		String videoIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER
+		String videoIni = USBConfig.drivePath + USBConfig.INI_NEW_FOLDER
 				+ "\\video.ini";
 		File f = new File(videoIni);
 		if (f.exists()) {

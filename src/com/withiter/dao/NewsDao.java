@@ -55,7 +55,7 @@ public class NewsDao {
 	public void writeToIniFile() throws IOException {
 		System.out.println("start to write info into news.ini");
 		
-		String newsIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\news.ini";
+		String newsIni = USBConfig.drivePath + USBConfig.INI_NEW_FOLDER + "\\news.ini";
 		File f = new File(newsIni);
 		if(f.exists()){
 			f.delete();

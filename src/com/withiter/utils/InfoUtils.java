@@ -69,7 +69,7 @@ public class InfoUtils {
 		checkUSB();
 		System.out.println("start to load temperature info from usb");
 		String rootPath = USBConfig.drivePath;
-		String initnewFolder = rootPath + USBConfig.INIT_NEW_FOLDER + "\\";
+		String initnewFolder = rootPath + USBConfig.INI_NEW_FOLDER + "\\";
 		String temperatureiniFile = initnewFolder + "temperature.ini";
 
 		File temperatureIni = new File(temperatureiniFile);
@@ -98,7 +98,7 @@ public class InfoUtils {
 		checkUSB();
 		System.out.println("start to load news info from usb");
 		String rootPath = USBConfig.drivePath;
-		String initnewFolder = rootPath + USBConfig.INIT_NEW_FOLDER + "\\";
+		String initnewFolder = rootPath + USBConfig.INI_NEW_FOLDER + "\\";
 		String newsiniFile = initnewFolder + "news.ini";
 
 		File newsIni = new File(newsiniFile);

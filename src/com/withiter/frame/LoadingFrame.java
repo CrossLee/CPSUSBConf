@@ -43,7 +43,7 @@ public class LoadingFrame extends JFrame implements Runnable {
 			f.createNewFile();
 			String ext = "ext=wmv avi rm rmvb mpg mp4";
 			String video_new_folder = "video_new_folder=videonew";
-			String init_new_folder = "init_new_folder=initnew";
+			String init_new_folder = "init_new_folder=ininew";
 			String video_path = "video_path=\\Storage card\\videodata\\";
 			String video_max_number = "video_max_number=50";
 			String news_max_chars = "news_max_chars=100";

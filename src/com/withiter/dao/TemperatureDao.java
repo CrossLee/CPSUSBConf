@@ -54,7 +54,7 @@ public class TemperatureDao {
 	public void writeToIniFile() throws IOException {
 		System.out.println("start to write info into temperature.ini");
 		
-		String temperatureIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\temperature.ini";
+		String temperatureIni = USBConfig.drivePath + USBConfig.INI_NEW_FOLDER + "\\temperature.ini";
 		File f = new File(temperatureIni);
 		if(f.exists()){
 			f.delete();

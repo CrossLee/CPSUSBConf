@@ -72,7 +72,7 @@ public class VideoDao {
 	public void writeToIniFile() throws IOException {
 		System.out.println("start to write info into video.ini");
 		
-		String videoIni = USBConfig.drivePath + USBConfig.INIT_NEW_FOLDER + "\\video.ini";
+		String videoIni = USBConfig.drivePath + USBConfig.INI_NEW_FOLDER + "\\video.ini";
 		File f = new File(videoIni);
 		if(f.exists()){
 			f.delete();
