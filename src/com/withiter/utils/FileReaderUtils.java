@@ -55,18 +55,30 @@ public class FileReaderUtils {
 	}
 
 	public static String code(File f) throws IOException {
-		InputStream inputStream = new FileInputStream(f);
-		byte[] head = new byte[3];
-		inputStream.read(head);
+		return "UTF-16";
+	}
+	
+	public static String getEncode(File f){
 		String code = "gb2312";
-		if (head[0] == -17 && head[1] == -69 && head[2] == -65)
-			code = "UTF-8";
-		if (head[0] == -1 && head[1] == -2)
-			code = "UTF-16";
-		if (head[0] == -2 && head[1] == -1)
-			code = "Unicode";
+		try {
+			InputStream inputStream = new FileInputStream(f);
+			byte[] head = new byte[3];
+			inputStream.read(head);
+			if (head[0] == -17 && head[1] == -69 && head[2] == -65)
+				code = "UTF-8";
+			if (head[0] == -1 && head[1] == -2)
+				code = "UTF-16";
+			if (head[0] == -2 && head[1] == -1)
+				code = "Unicode";
 
-		inputStream.close();
+			inputStream.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return code;
 	}
 
