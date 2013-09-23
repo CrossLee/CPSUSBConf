@@ -38,12 +38,14 @@ public class FileReaderUtils {
 			throws IOException {
 		System.out.println("writeToFile function started.");
 		String encoding = code(f);
+		encoding = "Unicode";
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter writer = new OutputStreamWriter(fos, encoding);
+//		OutputStreamWriter writer = new OutputStreamWriter(fos);
 		BufferedWriter bw = new BufferedWriter(writer);
 		for (String s : lines) {
 			bw.write(s);
-			bw.newLine();
+//			bw.newLine();
 		}
 		bw.flush();
 		writer.flush();
