@@ -31,10 +31,10 @@ public class UTF16Test {
 		for(int i=2;i<bbb.length; i++){
 			bbbb[i-2] = bbb[i];
 		}
-		lines.add(new String(bbbb,Charset.forName("UTF-16")));
-		lines.add(new String(bbbb,Charset.forName("UTF-16")));
-//		lines.add("abc");
-//		lines.add("abc");
+//		lines.add(new String(bbb,Charset.forName("UTF-16")));
+//		lines.add(new String(bbb,Charset.forName("UTF-16")));
+		lines.add("[news]");
+		lines.add("sum=0");
 		File tmp = new File("C:/temp.ini");
 		if(tmp.exists()){
 			tmp.delete();
@@ -45,6 +45,8 @@ public class UTF16Test {
 		Thread.sleep(10000);
 		
 		FileReaderUtils.writeToFile(lines, tmp);
+		
+		System.out.println(FileReaderUtils.readFile(tmp));
 		
 //		String str = "我";   
 //		System.out.println((str.getBytes(Charset.forName("UTF-16"))));   

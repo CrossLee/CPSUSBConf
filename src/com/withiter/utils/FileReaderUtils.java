@@ -21,7 +21,7 @@ public class FileReaderUtils {
 			return null;
 		}
 		List<String> list = new ArrayList<String>();
-		String encoding = code(f);
+		String encoding = getEncode(f);
 		InputStreamReader read = new InputStreamReader(new FileInputStream(f),
 				encoding);
 		BufferedReader br = new BufferedReader(read);
@@ -38,15 +38,19 @@ public class FileReaderUtils {
 			throws IOException {
 		System.out.println("writeToFile function started.");
 		String encoding = code(f);
-		encoding = "Unicode";
+		encoding = "UTF-16LE";
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter writer = new OutputStreamWriter(fos, encoding);
 //		OutputStreamWriter writer = new OutputStreamWriter(fos);
 		BufferedWriter bw = new BufferedWriter(writer);
-		for (String s : lines) {
-			bw.write(s);
-//			bw.newLine();
+//		bw.w
+		for (int i=0; i<lines.size();i++) {
+			bw.write(lines.get(i));
+			if(i != lines.size() - 1){
+				bw.newLine();
+			}
 		}
+		bw.write("\r\n");
 		bw.flush();
 		writer.flush();
 		fos.flush();
@@ -57,7 +61,7 @@ public class FileReaderUtils {
 	}
 
 	public static String code(File f) throws IOException {
-		return "UTF-16";
+		return "UTF-16LE";
 	}
 	
 	public static String getEncode(File f){
