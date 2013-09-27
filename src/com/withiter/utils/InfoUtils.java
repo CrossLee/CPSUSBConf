@@ -175,6 +175,9 @@ public class InfoUtils {
 		if (list != null) {
 			Log log = null;
 			for (int i = 0; i < list.size(); i += 3) {
+				if(i == 0 && list.get(i).length() < 5){
+					break;
+				}
 
 				System.out.println("line: " + i + "," + list.get(i));
 				System.out.println("line: " + (i + 1) + "," + list.get(i + 1));

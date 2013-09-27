@@ -21,7 +21,7 @@ public class FileReaderUtils {
 			return null;
 		}
 		List<String> list = new ArrayList<String>();
-		String encoding = getEncode(f);
+		String encoding = "UTF-16LE";
 		InputStreamReader read = new InputStreamReader(new FileInputStream(f),
 				encoding);
 		BufferedReader br = new BufferedReader(read);
@@ -45,6 +45,13 @@ public class FileReaderUtils {
 		BufferedWriter bw = new BufferedWriter(writer);
 //		bw.w
 		for (int i=0; i<lines.size();i++) {
+			if(i == 0){
+				bw.write("\uFEFF"+lines.get(i));
+				if(i != lines.size() - 1){
+					bw.newLine();
+				}
+				continue;
+			}
 			bw.write(lines.get(i));
 			if(i != lines.size() - 1){
 				bw.newLine();

@@ -16,7 +16,6 @@ public class UTF16Test {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws IOException, InterruptedException {
-		// TODO Auto-generated method stub
 		String basePath = UTF16Test.class.getResource("/").getPath();
 		File f = new File(basePath+"/files/news.ini");
 		File f1 = new File(basePath+"/files/logfile.txt");
@@ -26,57 +25,27 @@ public class UTF16Test {
 		System.out.println(code1);
 		
 		List<String> lines = new ArrayList<String>();
-		byte[] bbb = "你好".getBytes("UTF-16");
-		byte[] bbbb = new byte[bbb.length - 2];
-		for(int i=2;i<bbb.length; i++){
-			bbbb[i-2] = bbb[i];
-		}
-//		lines.add(new String(bbb,Charset.forName("UTF-16")));
-//		lines.add(new String(bbb,Charset.forName("UTF-16")));
 		lines.add("[news]");
-		lines.add("sum=0");
-		File tmp = new File("C:/temp.ini");
+		lines.add("sum=2");
+		lines.add("news0=asdfas");
+		lines.add("news1=阿斯顿发生地方");
+		File tmp = new File("C:/cross/temp.ini");
 		if(tmp.exists()){
 			tmp.delete();
 		}
 		tmp.createNewFile();
 		FileReaderUtils.copy(f, tmp);
-		
-		Thread.sleep(10000);
-		
 		FileReaderUtils.writeToFile(lines, tmp);
 		
 		System.out.println(FileReaderUtils.readFile(tmp));
 		
-//		String str = "我";   
-//		System.out.println((str.getBytes(Charset.forName("UTF-16"))));   
-//		System.out.println((str.getBytes(Charset.forName("UTF-16BE"))));   
-//		System.out.println((str.getBytes(Charset.forName("UTF-16LE"))));   
-//		System.out.println((str.getBytes(Charset.forName("UTF-8")))); 
+		System.out.println(FileReaderUtils.readFile(f1));
 		
-//		File ff  = new File(basePath+"/files/news.ini");
-//		FileInputStream in = new FileInputStream(ff);
-//		// 指定读取文件时以UTF-8的格式读取
-//		BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-16"));
-//		
-//		String line = br.readLine();
-//		while(line != null)
-//		{
-//			System.out.println(line);
-//			byte[] allbytes = line.getBytes("UTF-16"); 
-//			for (int i=0; i < allbytes.length; i++)
-//			{
-//				int tmpx = allbytes[i];
-//				String hexString = Integer.toHexString(tmpx);
-//				System.out.println(hexString);
-//				// 1个byte变成16进制的，只需要2位就可以表示了，取后面两位，去掉前面的符号填充
-//				hexString = hexString.substring(hexString.length() -2);
-//				System.out.print(hexString.toUpperCase());
-//				System.out.print(" ");
-//			}
-//			line = br.readLine();
-//
-//		}
+		List<String> list = FileReaderUtils.readFile(f1);
+		System.out.println("logs's size is: " + list.size());
+		for(int i=0; i< list.size(); i++){
+			System.out.println(list.get(i));
+		}
 	}
 
 }
