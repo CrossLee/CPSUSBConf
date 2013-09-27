@@ -5,7 +5,7 @@ import com.sun.jna.Native;
 public class Dllforunicode {
 
 	static {
-		System.load("c:\\dllforunicode.dll");
+		System.load("c:\\forunicode.dll");
 //        Native.register("c:\\dllforunicode.dll");
     }
 	/**
