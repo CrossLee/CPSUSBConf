@@ -29,7 +29,7 @@ public class UTF16Test {
 		lines.add("sum=2");
 		lines.add("news0=asdfas");
 		lines.add("news1=阿斯顿发生地方");
-		File tmp = new File("C:/cross/temp.ini");
+		File tmp = new File("C:/temp.ini");
 		if(tmp.exists()){
 			tmp.delete();
 		}
